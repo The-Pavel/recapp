@@ -1,2 +1,104 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- <script type="text/javascript">
+  function showTab(selected, total)
+  {
+    for(i = 1; i <= total; i += 1)
+    {
+      document.getElementById(`tabs-${i}`).style.display = 'none';
+    }
+
+    document.getElementById(`tabs-${selected}`).style.display = 'block';
+  }
+</script> -->
+
+
+<div class="banner">
+  <h1>Pages#home</h1>
+  <p>Find me in app/views/pages/home.html.erb</p>
+</div>
+
+<div class="container">
+  <div class="uk-margin-medium-top">
+    <ul class="uk-flex-center" uk-tab>
+      <li class="uk-active"><a onclick = "showTab(1,2)" href="#">Applicants</a></li>
+      <li><a href="#" onclick = "showTab(2,2)">Chats</a></li>
+      <li><a id="onhold" href="#">On Hold</a></li>
+      <li><a id="rejected" href="#">Rejected</a></li>
+    </ul>
+  </div>
+
+  <div id="tabs-1">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6">
+          <!-- insert <div class="card"> -->
+
+
+<article class="card">
+  <header class="card__thumb">
+    <a href="#">
+      <video loop muted playsinline uk-video="autoplay: inview">
+    <source src="https://quirksmode.org/html5/videos/big_buck_bunny.mp4" type="video/mp4">
+    <source src="https://quirksmode.org/html5/videos/big_buck_bunny.ogv" type="video/ogg">
+</video>
+    </a>
+  </header>
+  <date class="card__date">
+    <span class="card__date__day">11</span>
+    <br/>
+    <span class="card__date__month">June</span>
+  </date>
+
+  <div class="card__body">
+    <div class="card__category"><a href="#">Photos</a></div>
+    <h2 class="card__title"><a href="#">We're on a highway to hell!</a></h2>
+    <div class="card__subtitle">Bender is frying Doc !</div>
+    <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit cumque non commodi, modi recusandae cupiditate ipsa ab soluta. Illum, dolore.</p>
+  </div>
+
+  <footer class="card__footer">
+    <span class="icon ion-clock"></span> 6min ago
+    <span class="icon ion-chatbox"></span><a href="#"> 42 comments</a>
+  </footer>
+</article>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <!-- nsert <div class="card"> -->
+
+
+<article class="card">
+  <header class="card__thumb">
+    <a href="#">
+      <video loop muted playsinline uk-video="autoplay: inview">
+    <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+</video>
+    </a>
+  </header>
+  <date class="card__date">
+    <span class="card__date__day">11</span>
+    <br/>
+    <span class="card__date__month">June</span>
+  </date>
+
+  <div class="card__body">
+    <div class="card__category"><a href="#">Photos</a></div>
+    <h2 class="card__title"><a href="#">We're on a highway to hell!</a></h2>
+    <div class="card__subtitle">Bender is frying Doc !</div>
+    <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit cumque non commodi, modi recusandae cupiditate ipsa ab soluta. Illum, dolore.</p>
+  </div>
+
+  <footer class="card__footer">
+    <span class="icon ion-clock"></span> 6min ago
+    <span class="icon ion-chatbox"></span><a href="#"> 42 comments</a>
+  </footer>
+</article>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
