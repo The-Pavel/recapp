@@ -1,0 +1,9 @@
+<%= link_to "Add information", edit_employer_registration_path(current_employer) %>
+<ul style="list-style-type: none;">
+<li>Company name: <%= @employer.company_name %></li>
+<li>About the company:<%= @employer.employer_bio %> </li>
+<li>Website link: <%= @employer.employer_website %> </li>
+<li>Title: <%= @employer.employer_title %></li>
+<li>Contact info: <%= @employer.contact_info %> </li>
+</ul>
+
