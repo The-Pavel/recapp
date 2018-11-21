@@ -7,3 +7,16 @@
 <li>Contact info: <%= @employer.contact_info %> </li>
 </ul>
 
+
+
+My positions
+<% @employer.positions.each do |position| %>
+  <%= position.title %>
+  <%= position.active_status %>
+<% end %>
+    <!--
+
+
+
+
+
