@@ -8,4 +8,5 @@ class PagesController < ApplicationController
   def employer_dashboard
     @employer = Employer.find(params[:employer_id])
   end
+
 end
