@@ -1,0 +1,6 @@
+<%= link_to "Add information", edit_user_registration_path(current_user)  %>
+<ul style="list-style-type: none;">
+<li>First name: <%= @user.first_name %></li>
+<li>Last name: <%= @user.last_name %></li>
+<li>Contact information: <%= @user.contact_info %></li>
+</ul>
