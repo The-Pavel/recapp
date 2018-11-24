@@ -5,10 +5,13 @@
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :company_name, required: true %>
-    <%= f.input :employer_bio, hint: "Tell jobseekers about your company! (100-1000 characters)" %>
-    <%= f.input :employer_website %>
-    <%= f.input :employer_title, hint: "What do you do in your company?" %>
+    <%= f.hint "Jobseekers will only see your company name if you leave these blank" %>
+    <%= f.input :first_name, input_html: { autocomplete: "given-name" }, label: "Your First Name" %>
+    <%= f.input :last_name, input_html: { autocomplete: "family-name" }, label: "Your Last Name" %>
+    <%= f.input :company_name, required: true, label: "Your Company Name" %>
+    <%= f.input :employer_bio, label: "Company Description", hint: "Tell jobseekers about your company! (100-1000 characters)" %>
+    <%= f.input :employer_website, label: "Your Website" %>
+    <%= f.input :employer_title, label: "Your Title", hint: "What do you do in your company?" %>
     <%= f.input :contact_info, hint: "How would you like to be contacted?" %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -20,15 +23,18 @@
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" },
+                label: "New Password" %>
 
     <%= f.input :password_confirmation,
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" },
+                label: "New Password Confirmation" %>
 
+<h3>Confirm Changes</h3>
 
     <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                hint: "Your password to confirm changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
   </div>
