@@ -1,0 +1,23 @@
+<p>hi from positions/show.html.erb</p>
+
+
+<ul style="list-style-type: none;">
+<li> <h3><%= @position.title %></h3> </li>
+<li> <%= @position.location %> </li>
+<li> <%= @position.occupation_type %> </li>
+<li> <%= @position.min_salary %> - <%= @position.max_salary %> </li>
+<li> Responsibilities </li>
+<li> <%= @position.responsibilities %> </li>
+<li> Requirements </li>
+<li> <%= @position.requirements %> </li>
+</ul>
+
+
+<ul style="list-style-type: none;">
+<li> <h3>Company Intro</h3> </li>
+<li>Company name: <%= @employer.company_name %></li>
+<li>About the company:<%= @employer.employer_bio %> </li>
+<li>Website link: <%= @employer.employer_website %> </li>
+</ul>
+
+<%= link_to "Update", edit_position_path(@position.id) %>
