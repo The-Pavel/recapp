@@ -6,14 +6,16 @@
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
     <%= f.input :company_name, required: true %>
-    <%= f.input :employer_bio %>
+    <%= f.input :employer_bio, hint: "Tell jobseekers about your company! (100-1000 characters)" %>
     <%= f.input :employer_website %>
-    <%= f.input :employer_title %>
-    <%= f.input :contact_info %>
+    <%= f.input :employer_title, hint: "What do you do in your company?" %>
+    <%= f.input :contact_info, hint: "How would you like to be contacted?" %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
+
+<h3>Change Password</h3>
 
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
