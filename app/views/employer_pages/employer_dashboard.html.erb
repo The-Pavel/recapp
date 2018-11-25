@@ -9,10 +9,17 @@
 
 
 
-My positions
+<h3>My positions</h3>
+
+<%= link_to "Open a new Job", new_position_path %>
+
 <% @employer.positions.each do |position| %>
-  <%= position.title %>
-  <%= position.active_status %>
+  <ul>
+    <li style="border: grey solid 1px; padding: 20px;" >
+    <%= link_to position.title, show_position_path(position.id) %>
+    <p>Position Status: <%= position.active_status %></p>
+    <p> <%= link_to "Delete", delete_position_path(position), data: { confirm: "Are you sure?" }, method: :delete %> </p>
+    </li>
+  </ul>
+
 <% end %>
-
-

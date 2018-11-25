@@ -1,0 +1,20 @@
+<p>hi from positions/edit.html.erb</p>
+
+<%= simple_form_for(@position, url: show_position_path, html: { method: :put }) do |f| %>
+
+  <%= f.input :title, required: true, autofocus: true %>
+  <%= f.input :occupation_type, required: true, collection: ["Full-time", "Part-time", "Remote", "Internship", "Temporary"], prompt: "Select Occupation Type" %>
+  <%= f.input :location, label: "City", required: true %>
+  <%= f.label "Salary Range (RMB)", :style => "color: darkblue;" %>
+  <%= f.input :min_salary, label: "Starting from", as: :integer %>
+  <%= f.input :max_salary, label: "Up to", as: :integer %>
+  <%= f.input :responsibilities, as: :text, required: true %>
+  <%= f.input :requirements, as: :text, required: true %>
+  <%= f.input :active_status, as: :radio_buttons, collection: ["Active", "Inactive", "Featured"] %>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, "Submit" %>
+  </div>
+
+<% end %>
