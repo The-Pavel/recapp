@@ -4,7 +4,7 @@ class PositionsController < ApplicationController
     if current_employer
       @position = Position.new
     else
-      flash[:notice] = "You are not allowed to create jobs"
+      flash[:alert] = "You are not allowed to create jobs"
       redirect_to(root_path)
     end
   end
@@ -35,7 +35,7 @@ class PositionsController < ApplicationController
   def edit
      @position = Position.find(params[:id])
      if current_employer.id != @position.employer_id
-       flash[:notice] = "You are not allowed to edit this job"
+       flash[:alert] = "You are not allowed to edit this job"
        redirect_to(root_path)
      end
   end

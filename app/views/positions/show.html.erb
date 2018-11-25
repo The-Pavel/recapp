@@ -20,7 +20,8 @@
 <li>Website link: <%= @employer.employer_website %> </li>
 </ul>
 
-
-    <% if @position.employer_id == current_employer.id %>
-      <%= link_to "Update", edit_position_path(@position.id) %>
+    <% if current_employer %>
+      <% if @position.employer_id == current_employer.id %>
+        <%= link_to "Update", edit_position_path(@position.id) %>
+      <% end %>
     <% end %>
