@@ -1,7 +1,12 @@
 class PositionsController < ApplicationController
 
   def new
-    @position = Position.new
+    if current_employer
+      @position = Position.new
+    else
+      flash[:notice] = "You are not allowed to create jobs"
+      redirect_to(root_path)
+    end
   end
 
   def create
@@ -29,6 +34,10 @@ class PositionsController < ApplicationController
 
   def edit
      @position = Position.find(params[:id])
+     if current_employer.id != @position.employer_id
+       flash[:notice] = "You are not allowed to edit this job"
+       redirect_to(root_path)
+     end
   end
 
   def destroy
