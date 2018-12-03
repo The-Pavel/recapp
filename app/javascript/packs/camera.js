@@ -18,6 +18,8 @@ videoElement.controls = false;
 var mediaRecorder;
 var chunks = [];
 var count = 0;
+const recordedVideo = document.querySelector('video#recorded');
+
 
 
 recBtn.onclick = function onBtnRecordClicked (){
@@ -35,12 +37,12 @@ recBtn.onclick = function onBtnRecordClicked (){
         /*
           MediaRecorder.isTypeSupported is a function announced in https://developers.google.com/web/updates/2016/01/mediarecorder and later introduced in the MediaRecorder API spec http://www.w3.org/TR/mediastream-recording/
         */
-        if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
-          var options = {mimeType: 'video/webm;codecs=vp9'};
-        } else if (MediaRecorder.isTypeSupported('video/webm;codecs=h264')) {
-          var options = {mimeType: 'video/webm;codecs=h264'};
-        } else  if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8')) {
-          var options = {mimeType: 'video/webm;codecs=vp8'};
+        if (MediaRecorder.isTypeSupported('video/wmv;codecs=vp9')) {
+          var options = {mimeType: 'video/wmv;codecs=vp9'};
+        } else if (MediaRecorder.isTypeSupported('video/wmv;codecs=h264')) {
+          var options = {mimeType: 'video/wmv;codecs=h264'};
+        } else  if (MediaRecorder.isTypeSupported('video/wmv;codecs=vp8')) {
+          var options = {mimeType: 'video/wmv;codecs=vp8'};
         }
         mediaRecorder = new MediaRecorder(stream, options);
       }else{
@@ -52,6 +54,7 @@ recBtn.onclick = function onBtnRecordClicked (){
 
       videoElement.srcObject = stream;
       videoElement.play();
+
 
       stream.getTracks().forEach(function(track) {
         log(track.kind+":"+JSON.stringify(track.getSettings()));
@@ -75,20 +78,17 @@ recBtn.onclick = function onBtnRecordClicked (){
       mediaRecorder.onstop = function(){
         // log('Stopped  & state = ' + mediaRecorder.state);
 
-        var blob = new Blob(chunks, {type: "video/webm"});
+        var blob = new Blob(chunks, {type: "video/wmv"});
         chunks = [];
 
         var videoURL = window.URL.createObjectURL(blob);
         videoElement.src = videoURL;
 
-
-
-
         downloadLink.href = videoURL;
         downloadLink.innerHTML = 'Download video file';
 
         var rand =  Math.floor((Math.random() * 10000000));
-        var name  = "video_"+rand+".webm" ;
+        var name  = "video_"+rand+".wmv" ;
 
         downloadLink.setAttribute( "download", name);
         downloadLink.setAttribute( "name", name);
@@ -109,14 +109,23 @@ recBtn.onclick = function onBtnRecordClicked (){
   }
 }
 
+
+
 stopBtn.onclick = function onBtnStopClicked(){
   let stream = videoElement.srcObject;
+  const superBuffer = new Blob(chunks, {type: 'video/wmv'});
+  recordedVideo.src = null;
+  recordedVideo.srcObject = null;
+  recordedVideo.src = window.URL.createObjectURL(superBuffer);
+  recordedVideo.controls = true;
+  recordedVideo.play();
   mediaRecorder.stop();
   videoElement.controls = true;
 
   recBtn.disabled = false;
   // pauseResBtn.disabled = true;
   stopBtn.disabled = true;
+  // playBtn.disabled = false;
   stream.getTracks().forEach(track => track.stop())
 }
 
@@ -126,6 +135,14 @@ function log(message){
   dataElement.innerHTML = dataElement.innerHTML;
 }
 
+function handleSuccess(stream) {
+  recordButton.disabled = false;
+  console.log('getUserMedia() got stream:', stream);
+  window.stream = stream;
+
+  const gumVideo = document.querySelector('video#gum');
+  gumVideo.srcObject = stream;
+}
 
 //browser ID
 function getBrowser(){
@@ -190,5 +207,7 @@ function getBrowser(){
 
   return browserName;
 }
+
+
 
 
