@@ -1,1 +1,60 @@
 // Specific CSS for your home-page
+.side-margin {
+  padding: 0 10%;
+}
+
+.video {
+  margin: 0 auto;
+  width: 100vw;
+  position: relative;
+
+  video {
+    max-height: calc(100vh - 70px);
+    width: 100%;
+  }
+
+  .video-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      color: white;
+      font-weight: bold;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.bg-blue {
+  background-image: linear-gradient(45deg, rgba(39,128,200,0.85), rgba(15,166,232,0.9));
+
+  h1, p {
+    color: white;
+  }
+
+  button {
+    background-color: white;
+    color: $light-blue;
+  }
+}
+
+.timeline-container {
+  text-align: center;
+
+  .timeline-item {
+    margin-top: 40px;
+  }
+
+  h2 {
+    margin-top: 60px;
+  }
+  p {
+    color: $dark-gray;
+    margin-top: 20px;
+    width: 80%;
+  }
+}
