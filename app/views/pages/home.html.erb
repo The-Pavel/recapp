@@ -1,5 +1,144 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<% #if flash[:notice] %>
-    <!-- <div class="alert"><%= flash[:notice] %></div> -->
-<% #end %>
+ <!-- <div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item"
+src="https://www.youtube.com/embed/LspIeUElIFA?autoplay=1&controls=0&loop=1&modestbranding=1&color=white&start=13"
+frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</div> -->
+
+<div class="video d-flex justify-content-center align-items-center">
+  <div class="video-text">
+    <h1>JOBSEEKERS</h1>
+    <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+  </div>
+  <video autoplay loop id="video-background" muted plays-inline>
+    <source src="https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761" type="video/mp4">
+  </video>
+</div>
+
+<!-- <div class="container"> -->
+  <div class="banner-section">
+    <h1>Make Hiring More Productive</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua labore et dolore magna aliqu</p>
+    <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+  </div>
+
+  <div class="side-margin">
+    <div class="cards-container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <div class="card">
+            <div class="card-logo d-flex justify-content-center align-items-center"><%= image_tag('search.svg', class: "img-sm-fixed") %></div>
+            <div class="card-description d-flex justify-content-center align-items-center">
+              <p>Search for talents more efficiently</p>
+            </div>
+            <a class="card-link" href="#" ></a>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card">
+            <div class="card-logo d-flex justify-content-center align-items-center bg-yellow"><%= image_tag('time.svg', class: "img-sm-fixed") %></div>
+            <div class="card-description d-flex justify-content-center align-items-center">
+              <p>Save time and cost of recruitment</p>
+            </div>
+            <a class="card-link" href="#" ></a>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card">
+            <div class="card-logo d-flex justify-content-center align-items-center bg-green"><%= image_tag('tick.svg', class: "img-sm-fixed") %></div>
+            <div class="card-description d-flex justify-content-center align-items-center">
+              <p>Improve quality of hiring decisions</p>
+            </div>
+            <a class="card-link" href="#" ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-container">
+    <div class="section-right side-margin">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div class="d-flex justify-content-center align-items-center">
+            <%= image_tag('macbook.png', class: "img-lg") %>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <div class="feature-content d-flex flex-column justify-content-center">
+            <div class="feature-header d-flex align-items-center">
+              <%= image_tag('video-call.svg', class: "img-md-fixed") %>
+              <h2>Video Interviews</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-left bg-white side-margin">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div class="feature-content d-flex flex-column justify-content-center">
+            <div class="feature-header d-flex align-items-center justify-content-end">
+              <h2>Dashboard</h2>
+              <%= image_tag('analytics-1.svg', class: "img-md-fixed") %>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6"></div>
+      </div>
+    </div>
+    <div class="section-right side-margin">
+      <div class="row">
+        <div class="col-sm-12 col-md-6"></div>
+        <div class="col-sm-12 col-md-6">
+          <div class="feature-content d-flex flex-column justify-content-center">
+            <div class="feature-header d-flex align-items-center">
+              <%= image_tag('analytics-3.svg', class: "img-md-fixed") %>
+              <h2>Analytics</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-right bg-white timeline-container side-margin">
+    <h2>HOW IT WORKS</h1>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
+        <div class="timeline-item d-flex flex-column justify-content-center align-items-center">
+          <%= image_tag('request.svg', class: "img-lg-fixed") %>
+          <p>ADD INTERVIEW QUESTIONS</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-3">
+        <div class="timeline-item d-flex flex-column justify-content-center align-items-center">
+          <%= image_tag('microphone.svg', class: "img-lg-fixed") %>
+          <p>CANDIDATES RECORD RESPONSES</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-3">
+        <div class="timeline-item d-flex flex-column justify-content-center align-items-center">
+          <%= image_tag('interview.svg', class: "img-lg-fixed") %>
+          <p>ACCESS CANDIDATE VIDEOS</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-3">
+        <div class="timeline-item d-flex flex-column justify-content-center align-items-center">
+          <%= image_tag('research.svg', class: "img-lg-fixed") %>
+          <p>HIRE THE RIGHT CANDIDATE</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="banner-section bg-blue">
+    <h1>Start now for FREE.</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua labore et dolore magna aliqu</p>
+    <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+  </div>
+<!-- </div> -->
+
