@@ -1,0 +1,10 @@
+# config/cloudinary.yml
+development:
+  cloud_name: "thepav"
+  api_key: "392737653816348"
+  api_secret: "YfLIDKjIs_jobIEgR6--G6co32M"
+
+production:
+  cloud_name: "thepav"
+  api_key: "392737653816348"
+  api_secret: "YfLIDKjIs_jobIEgR6--G6co32M"
