@@ -1,5 +1,6 @@
 'use strict';
 
+
 /* globals MediaRecorder */
 // Spec is at http://dvcs.w3.org/hg/dap/raw-file/tip/media-stream-capture/RecordingProposal.html
 
@@ -8,7 +9,7 @@ var constraints = {audio: true,video: {  width: { min: 320, ideal: 320, max: 640
 var recBtn = document.querySelector('button#rec');
 
 var stopBtn = document.querySelector('button#stop');
-
+var sbmtBtn = document.querySelector('button#submit')
 var videoElement = document.querySelector('video');
 var dataElement = document.querySelector('#data');
 var downloadLink = document.querySelector('a#downloadLink');
@@ -87,11 +88,28 @@ recBtn.onclick = function onBtnRecordClicked (){
           callback(reader.result);
           };
           reader.readAsDataURL(blob);
+
         }
 
         var videoURL = window.URL.createObjectURL(blob);
         videoElement.src = videoURL;
+        console.log(videoURL);
 
+        sbmtBtn.onclick = function onBtnSubmitClicked (){
+          var formData = new FormData();
+          formData.append('upload_preset', 'b0evuvff');
+          formData.append('api_key', "392737653816348");
+          formData.append('file', blob);
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
+          xhr.onreadystatechange = function () {
+              if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                  console.log(this.status);
+                  alert("Video uploaded to your cloudinary media library");
+              } }
+          xhr.send(formData);
+          sbmtBtn.disabled = true;
+        }
 
         downloadLink.href = videoURL;
         downloadLink.innerHTML = 'Download video file';
@@ -101,21 +119,6 @@ recBtn.onclick = function onBtnRecordClicked (){
 
         downloadLink.setAttribute( "download", name);
         downloadLink.setAttribute( "name", name);
-
-        function dataUrlToFile(dataUrl) {
-          var binary = atob(dataUrl.split(',')[1]),
-          data = [];
-          for (var i = 0; i < binary.length; i++)
-          data.push(binary.charCodeAt(i));
-          return new File([new Uint8Array(data)], name, {
-          type: 'video/webm'
-        });
-}
-        chunksToDataUrl(function(dataUrl) {
-    var file = dataUrlToFile(dataUrl);
-    console.log(file);
-    // upload file to the server.
-  });
 
       };
 
@@ -146,6 +149,7 @@ stopBtn.onclick = function onBtnStopClicked(){
   videoElement.controls = true;
 
   recBtn.disabled = false;
+  sbmtBtn.disabled = false;
   // pauseResBtn.disabled = true;
   stopBtn.disabled = true;
   // playBtn.disabled = false;
@@ -168,17 +172,6 @@ function handleSuccess(stream) {
   const gumVideo = document.querySelector('video#gum');
   gumVideo.srcObject = stream;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -10,4 +10,3 @@ class UserPagesController < ApplicationController
     end
   end
 end
-
