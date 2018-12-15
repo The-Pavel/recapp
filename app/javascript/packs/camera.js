@@ -13,6 +13,7 @@ var sbmtBtn = document.querySelector('button#submit')
 var videoElement = document.querySelector('video');
 var dataElement = document.querySelector('#data');
 var downloadLink = document.querySelector('a#downloadLink');
+// var user_id = document.querySelector('#user_id');
 
 videoElement.controls = false;
 
@@ -99,6 +100,7 @@ recBtn.onclick = function onBtnRecordClicked (){
           var formData = new FormData();
           formData.append('upload_preset', 'b0evuvff');
           formData.append('api_key', "392737653816348");
+          formData.append('folder', user_id);
           formData.append('file', blob);
           var xhr = new XMLHttpRequest();
           xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
@@ -109,18 +111,50 @@ recBtn.onclick = function onBtnRecordClicked (){
               } }
           xhr.send(formData);
           sbmtBtn.disabled = true;
+          console.log(user_id);
+          console.log(user_url);
+
+          $.ajax({
+            type: 'PATCH',
+            url: user_url,
+            data: JSON.stringify(blob),
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            cache: false,
+            success: function (json)
+            {
+                if (json.Success)
+                {
+                console.log(json);
+                }
+                else
+                {
+                    // handle audio upload failure reported
+                    // back from server (I have a json.Error.Msg)
+                }
+            }
+            , error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
+                // handle audio upload failure
+            }
+          });
+
         }
 
-        downloadLink.href = videoURL;
-        downloadLink.innerHTML = 'Download video file';
+    }
 
-        var rand =  Math.floor((Math.random() * 10000000));
-        var name  = "video_"+rand+".webm" ;
+        // downloadLink.href = videoURL;
+        // downloadLink.innerHTML = 'Download video file';
 
-        downloadLink.setAttribute( "download", name);
-        downloadLink.setAttribute( "name", name);
+        // var rand =  Math.floor((Math.random() * 10000000));
+        // var name  = "video_"+rand+".webm" ;
 
-      };
+        // downloadLink.setAttribute( "download", name);
+        // downloadLink.setAttribute( "name", name);
+
+
 
       mediaRecorder.onwarning = function(e){
         log('Warning: ' + e);
