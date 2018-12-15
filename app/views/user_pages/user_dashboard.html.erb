@@ -3,25 +3,26 @@
 <li>First name: <%= @user.first_name %></li>
 <li>Last name: <%= @user.last_name %></li>
 <li>Contact information: <%= @user.contact_info %></li>
+
 </ul>
 
-
-
-
-
-  <video id="gum" playsinline autoplay></video>
+ <video id="gum" playsinline autoplay></video>
   <video id="recorded" playsinline loop></video>
   <button id="rec" >Record</button>
   <button id="stop" disabled>Stop</button>
   <button id="submit" disabled>Save recording</button>
 
- </div>
-<a id="downloadLink" download="mediarecorder.webm" name="mediarecorder.webm" href></a>
 <p id="data"></p>
+<% @user.video_array.each do |video| %>
+  <%= cl_video_tag video, autoplay: true, loop: true %>
+<% end  %>
 
 
-
-
+<%= javascript_tag do %>
+   user_id = '<%= @user.id %>';
+   user_url = '<%= "//localhost:3000/users/#{@user.id}/update_video" %>';
+   api_key = '<% ENV['api_key'] %>'
+<% end %>
 
 
 
