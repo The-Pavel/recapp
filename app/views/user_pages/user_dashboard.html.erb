@@ -20,7 +20,8 @@
 
 <%= javascript_tag do %>
    user_id = '<%= @user.id %>';
-   user_url = '<%= "//localhost:3000/users/#{@user.id}/update_video" %>'
+   user_url = '<%= "//localhost:3000/users/#{@user.id}/update_video" %>';
+   api_key = '<% ENV['api_key'] %>'
 <% end %>
 
 

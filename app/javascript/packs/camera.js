@@ -99,7 +99,7 @@ recBtn.onclick = function onBtnRecordClicked (){
         sbmtBtn.onclick = function onBtnSubmitClicked (){
           var formData = new FormData();
           formData.append('upload_preset', 'b0evuvff');
-          formData.append('api_key', "392737653816348");
+          formData.append('api_key', api_key);
           formData.append('folder', user_id);
           formData.append('file', blob);
           var xhr = new XMLHttpRequest();
