@@ -1,12 +1,26 @@
 .bg-img {
-  background: linear-gradient(45deg, rgba(39,128,200,0.7), rgba(15,166,232,0.7));
+  background: linear-gradient(45deg, rgba(39,128,200,0.85), rgba(15,166,232,0.85));
   img {
     min-height: 100vh;
     z-index: -1;
   }
 }
 .bg-text {
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%,-50%);
   color: white;
+  h2 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 18px;
+    font-weight: light;
+  }
 }
