@@ -1,20 +1,31 @@
 .form-label {
   color: $dark-gray;
-  font-size: 20px;
+  font-size: 15px;
+  padding-bottom: 12px;
+  margin-bottom: 0;
 }
 
-.form-container {
-  padding: 5% 10%;
+.form-section {
+  min-height: 100vh;
+}
+
+.form-content{
+  max-width: 635px;
+  margin: auto 5%;
+
   h2 {
     color: $blue;
     font-size: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
   .form-input {
     width: 100%;
     box-shadow: none;
-    height: calc(3.25rem + 2px);
-    border-radius: 0.45rem;
+    min-height: 52px;
+    border-radius: 2px;
+    padding: 0 15px;
+    border: 1px solid rgba(36,28,21,0.3);
+    font-size: 1.7em;
   }
 }
 .login-text {
@@ -23,7 +34,7 @@
 }
 
 .form-inputs .form-group {
-  margin-bottom: 2rem;
+  margin-bottom: 24px;
 }
 
 .login-btn {
@@ -31,4 +42,5 @@
 }
 .bg-login {
   height: 100vh;
+  background-repeat: no-repeat;
 }
