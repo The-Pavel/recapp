@@ -1,17 +1,17 @@
-.banner-section .btn, .video-text .btn, .form-actions .btn {
+.banner-section .btn, .video .btn, .form-actions .btn {
   border-style: none;
   background-color: $blue;
   padding: 12px 40px;
   font-size: 18px;
 }
 
-.banner-section .btn-lg, .video-text .btn-lg, .form-actions .btn-lg {
+.banner-section .btn-lg, .video .btn-lg, .form-actions .btn-lg {
   font-size: 18px;
   padding: 12px 40px;
   font-weight: bold;
 }
 
-.banner-section .btn-primary, .video-text .btn-primary, .form-actions .btn-primary {
+.banner-section .btn-primary, .video .btn-primary, .form-actions .btn-primary {
   border-color: none !important;
   border-style: none;
 }

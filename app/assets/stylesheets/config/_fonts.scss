@@ -1,9 +1,9 @@
 // Import Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
 
 // Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+$body-font: "Graphik", "Helvetica", "sans-serif";
+$headers-font: "Lato", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
@@ -14,3 +14,22 @@ $headers-font: "Raleway", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+@font-face {
+  font-family: "Graphik";
+  font-weight: 300;
+  font-style: normal;
+  src: font-url('graphik-thin-webfont.eot');
+  src: font-url('graphik-thin-webfont.woff') format('woff'),
+       font-url('graphik-thin-webfont.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: "Graphik";
+  font-weight: 400;
+  font-style: normal;
+  src: font-url('graphik-regular-webfont.eot');
+  src: font-url('graphik-regular-webfont.woff') format('woff'),
+       font-url('graphik-regular-webfont.ttf') format('truetype')
+}
+

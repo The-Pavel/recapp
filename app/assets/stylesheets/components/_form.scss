@@ -1,3 +1,7 @@
+.form-container {
+  font-family: $body-font;
+}
+
 .form-label {
   color: $dark-gray;
   font-size: 15px;
@@ -17,6 +21,7 @@
     color: $blue;
     font-size: 40px;
     margin-bottom: 40px;
+    font-weight: 400;
   }
   .form-input {
     width: 100%;

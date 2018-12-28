@@ -6,26 +6,16 @@
 .video {
   margin: 0 auto;
   width: 100vw;
-  position: relative;
 
   video {
-    max-height: calc(100vh - 70px);
     width: 100%;
   }
 
-  .video-text {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h1 {
-      color: white;
-      font-weight: bold;
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
+  h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 20px;
   }
 }
 
