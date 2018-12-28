@@ -3,12 +3,13 @@
   padding: 0 10%;
 }
 
-.video {
+.video-banner {
   margin: 0 auto;
   width: 100vw;
 
   video {
     width: 100%;
+    z-index: -1;
   }
 
   h1 {
@@ -29,6 +30,7 @@
   button {
     background-color: white;
     color: $light-blue;
+    box-shadow: none;
   }
 }
 
