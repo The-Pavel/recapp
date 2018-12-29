@@ -4,25 +4,65 @@
 /* globals MediaRecorder */
 // Spec is at http://dvcs.w3.org/hg/dap/raw-file/tip/media-stream-capture/RecordingProposal.html
 
-var constraints = {audio: true,video: {  width: { min: 320, ideal: 320, max: 640 },  height: { min: 240, ideal: 240, max: 480 }}};
-
+var constraints = {audio: true, video: {  width: { min: 320, ideal: 320, max: 640 },  height: { min: 240, ideal: 240, max: 480 }}};
 var recBtn = document.querySelector('button#rec');
-
 var stopBtn = document.querySelector('button#stop');
-var sbmtBtn = document.querySelector('button#submit')
+var sbmtBtn = document.querySelector('button#submit');
+var saveBtn = document.querySelector('button#save');
 var videoElement = document.querySelector('video');
 var dataElement = document.querySelector('#data');
 var downloadLink = document.querySelector('a#downloadLink');
-// var user_id = document.querySelector('#user_id');
-
 videoElement.controls = false;
-
 var mediaRecorder;
 var chunks = [];
 var count = 0;
+
 const recordedVideo = document.querySelector('video#recorded');
 
+saveBtn.onclick = function onBtnSaveClicked (){
+  var file = document.querySelector('input[type=file]').files[0];
+  var formData = new FormData();
+  formData.append('upload_preset', 'b0evuvff');
+  formData.append('api_key', api_key);
+  formData.append('folder', user_id);
+          formData.append('file', file);
 
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
+  xhr.onreadystatechange = function () {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+          console.log(this.status);
+          alert("Video uploaded to your cloudinary media library");
+              } }
+  xhr.send(formData);
+
+  $.ajax({
+  type: 'PATCH',
+  url: user_url,
+  data: JSON.stringify(file),
+  processData: false,
+  contentType: false,
+  dataType: 'json',
+  cache: false,
+  success: function (json)
+    {
+      if (json.Success)
+                {
+      console.log(json);
+                }
+      else
+          {
+                    // handle audio upload failure reported
+                    // back from server (I have a json.Error.Msg)
+                }
+            }
+            , error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
+                // handle audio upload failure
+            }
+          });
+}
 
 recBtn.onclick = function onBtnRecordClicked (){
   if (typeof MediaRecorder === 'undefined' || !navigator.mediaDevices.getUserMedia) {
@@ -34,7 +74,6 @@ recBtn.onclick = function onBtnRecordClicked (){
     navigator.mediaDevices.getUserMedia(constraints)
     .then(function(stream) {
       /* use the stream */
-
       if (typeof MediaRecorder.isTypeSupported == 'function'){
         /*
           MediaRecorder.isTypeSupported is a function announced in https://developers.google.com/web/updates/2016/01/mediarecorder and later introduced in the MediaRecorder API spec http://www.w3.org/TR/mediastream-recording/
@@ -53,10 +92,8 @@ recBtn.onclick = function onBtnRecordClicked (){
       }
 
       mediaRecorder.start(10);
-
       videoElement.srcObject = stream;
       videoElement.play();
-
 
       stream.getTracks().forEach(function(track) {
         log(track.kind+":"+JSON.stringify(track.getSettings()));
@@ -71,7 +108,6 @@ recBtn.onclick = function onBtnRecordClicked (){
         log('Error: ' + e);
         console.log('Error: ', e);
       };
-
 
       mediaRecorder.onstart = function(){
         // log('Started & state = ' + mediaRecorder.state);
@@ -102,6 +138,8 @@ recBtn.onclick = function onBtnRecordClicked (){
           formData.append('api_key', api_key);
           formData.append('folder', user_id);
           formData.append('file', blob);
+          formData.append('fetch_format', 'f_auto');
+
           var xhr = new XMLHttpRequest();
           xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
           xhr.onreadystatechange = function () {
@@ -111,8 +149,6 @@ recBtn.onclick = function onBtnRecordClicked (){
               } }
           xhr.send(formData);
           sbmtBtn.disabled = true;
-          console.log(user_id);
-          console.log(user_url);
 
           $.ajax({
             type: 'PATCH',
@@ -140,11 +176,8 @@ recBtn.onclick = function onBtnRecordClicked (){
                 // handle audio upload failure
             }
           });
-
         }
-
     }
-
         // downloadLink.href = videoURL;
         // downloadLink.innerHTML = 'Download video file';
 
@@ -153,8 +186,6 @@ recBtn.onclick = function onBtnRecordClicked (){
 
         // downloadLink.setAttribute( "download", name);
         // downloadLink.setAttribute( "name", name);
-
-
 
       mediaRecorder.onwarning = function(e){
         log('Warning: ' + e);
@@ -168,8 +199,6 @@ recBtn.onclick = function onBtnRecordClicked (){
     });
   }
 }
-
-
 
 stopBtn.onclick = function onBtnStopClicked(){
   let stream = videoElement.srcObject;
@@ -188,11 +217,7 @@ stopBtn.onclick = function onBtnStopClicked(){
   stopBtn.disabled = true;
   // playBtn.disabled = false;
   stream.getTracks().forEach(track => track.stop())
-
-
 }
-
-
 
 function log(message){
   dataElement.innerHTML = dataElement.innerHTML;
@@ -206,8 +231,6 @@ function handleSuccess(stream) {
   const gumVideo = document.querySelector('video#gum');
   gumVideo.srcObject = stream;
 }
-
-
 
 //browser ID
 function getBrowser(){
@@ -268,7 +291,6 @@ function getBrowser(){
    fullVersion  = ''+parseFloat(navigator.appVersion);
    majorVersion = parseInt(navigator.appVersion,10);
   }
-
 
   return browserName;
 }
