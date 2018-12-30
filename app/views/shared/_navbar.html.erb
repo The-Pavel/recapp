@@ -77,14 +77,13 @@
       <!-- Login link (when logged out) -->
 
       <div class="dropdown navbar-wagon-item navbar-wagon-link">
-        <div class="dropdown-toggle" data-toggle="dropdown">LOG IN</div>
+        <div class="dropdown-toggle cta-secondary cta-secondary-nav" data-toggle="dropdown">Log In</div>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><%= link_to t(".sign_in", default: "User Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link cta-primary" %></li>
-          <li><%= link_to t(".sign_in", default: "Employer Login"), new_employer_session_path, class: "navbar-wagon-item navbar-wagon-link cta-primary" %></li>
+          <li><%= link_to t(".sign_in", default: "User Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+          <li><%= link_to t(".sign_in", default: "Employer Login"), new_employer_session_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
         </ul>
       </div>
-      <%= link_to t(".sign_up", default: "SIGN UP"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
+      <%= link_to t(".sign_up", default: "Sign Up"), new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link cta-primary cta-primary-nav" %>
     <% end %>
   </div>
 
