@@ -9,7 +9,7 @@ skip_before_action :verify_authenticity_token
   end
 
   def update_video
-    sleep 1
+    sleep 3
 
     @user = User.find(params[:id])
     folder = @user.id.to_s
