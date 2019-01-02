@@ -19,49 +19,65 @@ var count = 0;
 
 const recordedVideo = document.querySelector('video#recorded');
 
+
 saveBtn.onclick = function onBtnSaveClicked (){
-  var file = document.querySelector('input[type=file]').files[0];
-  var formData = new FormData();
-  formData.append('upload_preset', 'b0evuvff');
-  formData.append('api_key', api_key);
-  formData.append('folder', user_id);
-          formData.append('file', file);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
-  xhr.onreadystatechange = function () {
-      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-          console.log(this.status);
-          alert("Video uploaded to your cloudinary media library");
-              } }
-  xhr.send(formData);
+  if (document.querySelector('input[type=file]').value != "")
+  {
+    var file = document.querySelector('input[type=file]').files[0];
+    var formData = new FormData();
+    formData.append('upload_preset', 'b0evuvff');
+    formData.append('api_key', api_key);
+    formData.append('folder', user_id);
+    formData.append('file', file);
 
-  $.ajax({
-  type: 'PATCH',
-  url: user_url,
-  data: JSON.stringify(file),
-  processData: false,
-  contentType: false,
-  dataType: 'json',
-  cache: false,
-  success: function (json)
-    {
-      if (json.Success)
-                {
-      console.log(json);
-                }
-      else
-          {
-                    // handle audio upload failure reported
-                    // back from server (I have a json.Error.Msg)
-                }
-            }
-            , error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
-                // handle audio upload failure
-            }
-          });
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
+    xhr.onreadystatechange = function () {
+        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            console.log(this.status);
+            alert("Video uploaded to your cloudinary media library");
+            // setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 3000);
+            $.ajax({
+            type: 'PATCH',
+            url: user_url,
+            data: JSON.stringify(file),
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            cache: false,
+            success: function (json)
+              {
+
+                if (json.Success){
+                    console.log(json);
+
+
+                          }
+                else
+                    {
+                              // handle audio upload failure reported
+                              // back from server (I have a json.Error.Msg)
+                          }
+                    setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
+                      }
+                      , error: function (jqXHR, textStatus, errorThrown)
+                      {
+                          alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
+                          // handle audio upload failure
+                      }
+
+                    });
+                } }
+    xhr.send(formData);
+
+
+
+    document.querySelector('input[type=file]').value = ""; }
+
+  else {
+    alert("Please select a file")
+  }
 }
 
 recBtn.onclick = function onBtnRecordClicked (){
@@ -146,36 +162,39 @@ recBtn.onclick = function onBtnRecordClicked (){
               if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
                   console.log(this.status);
                   alert("Video uploaded to your cloudinary media library");
+
+                  $.ajax({
+                  type: 'PATCH',
+                  url: user_url,
+                  data: JSON.stringify(blob),
+                  processData: false,
+                  contentType: false,
+                  dataType: 'json',
+                  cache: false,
+                  success: function (json)
+                  {
+                      if (json.Success)
+                      {
+                        console.log(json);
+                      }
+                      else
+                      {
+                          // handle audio upload failure reported
+                          // back from server (I have a json.Error.Msg)
+                      }
+                      setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
+                  }
+                  , error: function (jqXHR, textStatus, errorThrown)
+                  {
+                      alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
+                      // handle audio upload failure
+                  }
+                  });
               } }
           xhr.send(formData);
           sbmtBtn.disabled = true;
 
-          $.ajax({
-            type: 'PATCH',
-            url: user_url,
-            data: JSON.stringify(blob),
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            cache: false,
-            success: function (json)
-            {
-                if (json.Success)
-                {
-                console.log(json);
-                }
-                else
-                {
-                    // handle audio upload failure reported
-                    // back from server (I have a json.Error.Msg)
-                }
-            }
-            , error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
-                // handle audio upload failure
-            }
-          });
+
         }
     }
         // downloadLink.href = videoURL;

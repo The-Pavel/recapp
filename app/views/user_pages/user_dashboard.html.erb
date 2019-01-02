@@ -17,7 +17,7 @@
 
 <p id="data"></p>
 <% @user.video_array.each do |video| %>
-  <%= cl_video_tag video, autoplay: true, loop: true %>
+  <%= cl_video_tag video, controls: true %>
 <% end  %>
 
 
@@ -25,6 +25,7 @@
    user_id = '<%= @user.id %>';
    user_url = '<%= "//localhost:3000/users/#{@user.id}/update_video" %>';
    api_key = '<% ENV['api_key'] %>'
+   dashboard_url = '<%= "//localhost:3000/user/dashboard/#{@user.id}" %>';
 <% end %>
 
 
