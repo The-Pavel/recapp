@@ -32,7 +32,7 @@ saveBtn.onclick = function onBtnSaveClicked (){
     formData.append('file', file);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
+    xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload/q_auto:best');
     xhr.onreadystatechange = function () {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
             console.log(this.status);
