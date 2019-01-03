@@ -19,6 +19,9 @@ gem 'webpacker'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'jquery-rails'
+gem 'feeds-crawler', '~> 0.2.1'
+gem 'metainspector'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'
