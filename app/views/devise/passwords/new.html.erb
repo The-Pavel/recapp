@@ -1,18 +1,25 @@
-<h2>Forgot your password?</h2>
+<div class="container-sm">
+  <div class="form-section d-flex justify-content-center align-items-center">
+    <div class="form-content-login">
+      <h2 class='text-center'>Reset Your Password</h2>
+      <p>Don't worry. We’ll email you instructions to reset your password.</p>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, defaults: { label_html: { class: 'form-label' }, input_html: { class: 'form-input' } }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :email,
+            required: false,
+            autofocus: true,
+            input_html: { autocomplete: "email" } %>
+        </div>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+        <div class="form-actions text-center">
+          <%= f.button :submit, "Reset Password", class: "cta-primary cta-primary-nav" %>
+          <p class="login-text"><%= render "devise/shared/links" %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>

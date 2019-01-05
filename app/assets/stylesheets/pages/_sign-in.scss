@@ -24,3 +24,13 @@
     font-weight: 300;
   }
 }
+.container-sm {
+  max-width: 540px;
+  margin: 0 auto;
+  .form-content-login {
+    width: 90%;
+    h2 {
+      margin-bottom: 18px;
+    }
+  }
+}
