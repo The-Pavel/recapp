@@ -13,9 +13,17 @@
   min-height: 100vh;
 }
 
-.form-content{
+.form-content-login {
+  width: 80%;
+}
+
+.form-content {
   max-width: 635px;
   margin: auto 5%;
+}
+
+
+.form-content, .form-content-login{
 
   h2 {
     color: $blue;
@@ -24,7 +32,6 @@
     font-weight: 400;
   }
   .form-input {
-    width: 100%;
     box-shadow: none;
     min-height: 52px;
     border-radius: 2px;
@@ -33,15 +40,31 @@
     font-size: 1.7em;
   }
 }
+
 .login-text {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 15px;
+  line-height: 24px;
+  a {
+    color: $blue;
+  }
 }
 
 .form-inputs .form-group {
   margin-bottom: 24px;
+
+  .form-check {
+    padding-left: 0;
+
+    .form-check-input {
+      position: relative;
+      margin-right: 1rem;
+    }
+
+  }
 }
 
 .login-btn {
   color: $blue;
 }
+
