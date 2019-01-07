@@ -12,7 +12,7 @@
   box-shadow: inset 0 0 0 0.0625rem $blue;
   border-radius: 2px;
   color: #fff;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: bold;
   padding: 1.75rem 5rem;
   transition: all .15s linear;
@@ -27,7 +27,7 @@
 }
 .cta-secondary {
   background-color: transparent;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: bold;
   transition: all .15s linear;
   border-radius: 2px;
@@ -43,4 +43,6 @@
 }
 .form-actions .cta-primary {
   border: none;
+  height: 48px;
+  padding: 0 48px;
 }
