@@ -1,36 +1,33 @@
 // Specific CSS for your home-page
+body {
+  background-color: white;
+}
+
 .side-margin {
   padding: 0 10%;
 }
 
-.video {
+.video-banner {
   margin: 0 auto;
   width: 100vw;
-  position: relative;
 
   video {
-    max-height: calc(100vh - 70px);
     width: 100%;
+    z-index: -1;
   }
 
-  .video-text {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h1 {
-      color: white;
-      font-weight: bold;
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
+  h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 20px;
   }
 }
 
 .bg-blue {
-  background-image: linear-gradient(45deg, rgba(39,128,200,0.85), rgba(15,166,232,0.9));
+  // background-image: linear-gradient(45deg, rgba(39,128,200,0.85), rgba(15,166,232,0.9));
+  // background-image: radial-gradient( circle farthest-corner at 18% 18.8%,  rgba(4,150,255,0.63) 0%, rgba(4,150,255,1) 90% );
+  background-image: linear-gradient( 106.8deg,  rgba(91,192,222,1) 11.1%, rgba(26,159,199,1) 89.7% );
 
   h1, p {
     color: white;
@@ -39,6 +36,7 @@
   button {
     background-color: white;
     color: $light-blue;
+    box-shadow: none;
   }
 }
 

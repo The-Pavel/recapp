@@ -1,22 +1,46 @@
-.banner-section .btn, .video-text .btn, .form-actions .btn {
-  border-style: none;
+.cta-primary, .cta-secondary {
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+}
+
+.cta-primary, .form-actions .cta-primary {
   background-color: $blue;
-  padding: 12px 40px;
-  font-size: 18px;
-}
-
-.banner-section .btn-lg, .video-text .btn-lg, .form-actions .btn-lg {
-  font-size: 18px;
-  padding: 12px 40px;
+  box-shadow: inset 0 0 0 0.0625rem $blue;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 1.75rem;
   font-weight: bold;
-}
-
-.banner-section .btn-primary, .video-text .btn-primary, .form-actions .btn-primary {
-  border-color: none !important;
+  padding: 1.75rem 5rem;
+  transition: all .15s linear;
   border-style: none;
 }
-
-.bg-blue .btn {
+.cta-primary:hover {
+  text-decoration: none;
+}
+.cta-primary-nav, .cta-secondary-nav, .form-actions .cta-primary-nav {
+  min-width: 11.5rem;
+  padding: .8125rem;
+}
+.cta-secondary {
+  background-color: transparent;
+  font-size: 1.75rem;
+  font-weight: bold;
+  transition: all .15s linear;
+  border-radius: 2px;
+}
+.cta-secondary-nav {
+  box-shadow: inset 0 0 0 0.0625rem white;
+  color: white;
+}
+.cta-primary-banner {
   background-color: white;
-  color: $light-blue;
+  color: $blue;
+  box-shadow: none;
+}
+.form-actions .cta-primary {
+  border: none;
 }

@@ -1,9 +1,9 @@
-<%= render 'shared/navbar' %>
 
-<div class="video d-flex justify-content-center align-items-center">
-  <div class="video-text">
+<div class="video-banner d-flex flex-column justify-content-center align-items-center position-relative">
+  <%= render 'shared/navbar' %>
+  <div class="position-absolute d-flex flex-column align-items-center justify-content-center">
     <h1>JOBSEEKERS</h1>
-    <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+    <%= link_to t(".sign_up", default: "Get Started"), new_user_registration_path, class: "cta-primary" %>
   </div>
   <video autoplay loop id="video-background" muted plays-inline>
     <source src="https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761" type="video/mp4">
@@ -13,7 +13,7 @@
 <div class="banner-section">
   <h1>Make Hiring More Productive</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua labore et dolore magna aliqu</p>
-  <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+  <%= link_to t(".sign_up", default: "Get Started"), new_user_registration_path, class: "cta-primary" %>
 </div>
 
 <div class="side-margin">
@@ -105,25 +105,25 @@
     <div class="col-xs-12 col-md-3">
       <div class="timeline-item d-flex flex-column justify-content-center align-items-center">
         <%= image_tag('request.svg', class: "img-lg-fixed") %>
-        <p>ADD INTERVIEW QUESTIONS</p>
+        <p>Add Interview Questions</p>
       </div>
     </div>
     <div class="col-xs-12 col-md-3">
       <div class="timeline-item d-flex flex-column justify-content-center align-items-center">
         <%= image_tag('microphone.svg', class: "img-lg-fixed") %>
-        <p>CANDIDATES RECORD RESPONSES</p>
+        <p>Candidates Record Responses</p>
       </div>
     </div>
     <div class="col-xs-12 col-md-3">
       <div class="timeline-item d-flex flex-column justify-content-center align-items-center">
         <%= image_tag('interview.svg', class: "img-lg-fixed") %>
-        <p>ACCESS CANDIDATE VIDEOS</p>
+        <p>Access Candidate Videos</p>
       </div>
     </div>
     <div class="col-xs-12 col-md-3">
       <div class="timeline-item d-flex flex-column justify-content-center align-items-center">
         <%= image_tag('research.svg', class: "img-lg-fixed") %>
-        <p>HIRE THE RIGHT CANDIDATE</p>
+        <p>Hire the Right Candidate</p>
       </div>
     </div>
   </div>
@@ -133,6 +133,7 @@
 <div class="banner-section bg-blue">
   <h1>Start now for FREE.</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua labore et dolore magna aliqu</p>
-  <button type="button" class="btn btn-primary btn-lg">Get Started</button>
+  <%= link_to t(".sign_up", default: "Get Started"), new_user_registration_path, class: "cta-primary cta-primary-banner" %>
+  <!-- <button type="button" class="cta-primary">Get Started</button> -->
 </div>
 
