@@ -24,19 +24,23 @@ saveBtn.onclick = function onBtnSaveClicked (){
 
   if (document.querySelector('input[type=file]').value != "")
   {
-    var file = document.querySelector('input[type=file]').files[0];
-    var formData = new FormData();
-    formData.append('upload_preset', 'b0evuvff');
-    formData.append('api_key', api_key);
-    formData.append('folder', user_id);
-    formData.append('file', file);
+    for (var i = -1; i < document.querySelector('input[type=file]').files.length; i++) {
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
-    xhr.onreadystatechange = function () {
+      var file = document.querySelector('input[type=file]').files[i];
+      var formData = new FormData();
+      formData.append('upload_preset', 'b0evuvff');
+      formData.append('api_key', api_key);
+      formData.append('folder', user_id);
+      formData.append('file', file);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
+      xhr.send(formData); };
+
+      xhr.onreadystatechange = function () {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
             console.log(this.status);
-            alert("Video uploaded to your cloudinary media library");
+            alert("Successfully uploaded");
             // setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 3000);
             $.ajax({
             type: 'PATCH',
@@ -69,9 +73,6 @@ saveBtn.onclick = function onBtnSaveClicked (){
 
                     });
                 } }
-    xhr.send(formData);
-
-
 
     document.querySelector('input[type=file]').value = ""; }
 
@@ -154,8 +155,6 @@ recBtn.onclick = function onBtnRecordClicked (){
           formData.append('api_key', api_key);
           formData.append('folder', user_id);
           formData.append('file', blob);
-          formData.append('fetch_format', 'f_auto');
-
           var xhr = new XMLHttpRequest();
           xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
           xhr.onreadystatechange = function () {
