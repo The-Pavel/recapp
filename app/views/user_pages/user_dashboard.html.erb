@@ -3,6 +3,9 @@
 <li>First name: <%= @user.first_name %></li>
 <li>Last name: <%= @user.last_name %></li>
 <li>Contact information: <%= @user.contact_info %></li>
+<% @user.cv_array.each do |cv| %>
+  <p> CV <a href="<%= cv %>">view</a></p>
+<% end  %>
 
 </ul>
 
@@ -11,9 +14,12 @@
   <button id="rec" >Record</button>
   <button id="stop" disabled>Stop</button>
   <button id="submit" disabled>Save recording</button>
-  <input type="file" id="videoupload" multiple>
-
+  <p>Upload your video <input type="file" name="videoupload" multiple></p>
   <button id="save">Save</button>
+  <p>Upload your CV <input type="file" name="cvupload" multiple></p>
+  <button id="savecv">Save</button>
+
+
 
 <p id="data"></p>
 <% @user.video_array.each do |video| %>
@@ -21,10 +27,13 @@
 <% end  %>
 
 
+
+
 <%= javascript_tag do %>
    user_id = '<%= @user.id %>';
    user_url = '<%= "//localhost:3000/users/#{@user.id}/update_video" %>';
-   api_key = '<% ENV['api_key'] %>'
+   cv_url = '<%= "//localhost:3000/users/#{@user.id}/update_cv" %>';
+   api_key = '<% ENV['api_key'] %>';
    dashboard_url = '<%= "//localhost:3000/user/dashboard/#{@user.id}" %>';
 <% end %>
 

@@ -5,12 +5,13 @@ Rails.application.routes.draw do
       member do
         patch :update_video
         put :update_video
+        patch :update_cv
+        put :update_cv
       end
   end
   root to: 'pages#home'
   get 'employer/dashboard/:employer_id' , to: "employer_pages#employer_dashboard", as: 'employer_dashboard'
   get 'user/dashboard/:user_id' , to: "user_pages#user_dashboard", as: 'user_dashboard'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'positions/new', to: "positions#new", as: 'new_position'
   post 'positions/new', to: "positions#create"
   get 'positions/:id', to: "positions#show", as: 'show_position'
