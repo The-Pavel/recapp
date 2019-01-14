@@ -9,6 +9,7 @@ var recBtn = document.querySelector('button#rec');
 var stopBtn = document.querySelector('button#stop');
 var sbmtBtn = document.querySelector('button#submit');
 var saveBtn = document.querySelector('button#save');
+var saveCVBtn = document.querySelector('button#savecv');
 var videoElement = document.querySelector('video');
 var dataElement = document.querySelector('#data');
 var downloadLink = document.querySelector('a#downloadLink');
@@ -22,11 +23,11 @@ const recordedVideo = document.querySelector('video#recorded');
 
 saveBtn.onclick = function onBtnSaveClicked (){
 
-  if (document.querySelector('input[type=file]').value != "")
+  if (document.querySelector('input[name="videoupload').value != "")
   {
-    for (var i = -1; i < document.querySelector('input[type=file]').files.length; i++) {
+    for (var i = 0; i < document.querySelector('input[name="videoupload"]').files.length; i++) {
 
-      var file = document.querySelector('input[type=file]').files[i];
+      var file = document.querySelector('input[name="videoupload').files[i];
       var formData = new FormData();
       formData.append('upload_preset', 'b0evuvff');
       formData.append('api_key', api_key);
@@ -74,13 +75,73 @@ saveBtn.onclick = function onBtnSaveClicked (){
                     });
                 } }
 
-    document.querySelector('input[type=file]').value = ""; }
+            document.querySelector('input[name="videoupload"]').value = ""; }
 
   else {
     alert("Please select a file")
   }
 }
 
+saveCVBtn.onclick = function onBtnCVSaveClicked (){
+
+  if (document.querySelector('input[name="cvupload').value != "")
+  {
+    for (var i = 0; i < document.querySelector('input[name="cvupload"]').files.length; i++) {
+
+      var file = document.querySelector('input[name="cvupload').files[i];
+      var formData = new FormData();
+      formData.append('upload_preset', 'tda0doq1');
+      formData.append('api_key', api_key);
+      formData.append('folder', user_id);
+      formData.append('file', file);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
+      xhr.send(formData); };
+
+      xhr.onreadystatechange = function () {
+        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            console.log(this.status);
+            alert("Successfully uploaded");
+            // setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 3000);
+            $.ajax({
+            type: 'PATCH',
+            url: cv_url,
+            data: JSON.stringify(file),
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            cache: false,
+            success: function (json)
+              {
+
+                if (json.Success){
+                    console.log(json);
+
+
+                          }
+                else
+                    {
+                              // handle audio upload failure reported
+                              // back from server (I have a json.Error.Msg)
+                          }
+                    setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
+                      }
+                      , error: function (jqXHR, textStatus, errorThrown)
+                      {
+                          alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
+                          // handle audio upload failure
+                      }
+
+                    });
+                } }
+
+            document.querySelector('input[name="cvupload"]').value = ""; }
+
+  else {
+    alert("Please select a file")
+  }
+}
 recBtn.onclick = function onBtnRecordClicked (){
   if (typeof MediaRecorder === 'undefined' || !navigator.mediaDevices.getUserMedia) {
     alert('MediaRecorder or navigator.mediaDevices.getUserMedia is NOT supported on your browser, use Firefox or Chrome instead.');
@@ -196,14 +257,6 @@ recBtn.onclick = function onBtnRecordClicked (){
 
         }
     }
-        // downloadLink.href = videoURL;
-        // downloadLink.innerHTML = 'Download video file';
-
-        // var rand =  Math.floor((Math.random() * 10000000));
-        // var name  = "video_"+rand+".webm" ;
-
-        // downloadLink.setAttribute( "download", name);
-        // downloadLink.setAttribute( "name", name);
 
       mediaRecorder.onwarning = function(e){
         log('Warning: ' + e);
