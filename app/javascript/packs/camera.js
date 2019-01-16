@@ -94,6 +94,7 @@ saveCVBtn.onclick = function onBtnCVSaveClicked (){
       formData.append('api_key', api_key);
       formData.append('folder', user_id);
       formData.append('file', file);
+      formData.append('resource_type', 'raw');
 
       var xhr = new XMLHttpRequest();
       xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
@@ -142,6 +143,8 @@ saveCVBtn.onclick = function onBtnCVSaveClicked (){
     alert("Please select a file")
   }
 }
+
+
 recBtn.onclick = function onBtnRecordClicked (){
   if (typeof MediaRecorder === 'undefined' || !navigator.mediaDevices.getUserMedia) {
     alert('MediaRecorder or navigator.mediaDevices.getUserMedia is NOT supported on your browser, use Firefox or Chrome instead.');
