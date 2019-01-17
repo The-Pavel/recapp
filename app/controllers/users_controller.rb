@@ -28,10 +28,14 @@ skip_before_action :verify_authenticity_token
   def update_cv
     @user = User.find(params[:id])
     folder = @user.id.to_s
-    results = Cloudinary::Api.resources(type: 'upload', prefix: folder, format: 'pdf')
+    results = Cloudinary::Api.resources(type: 'upload', prefix: folder, resource_type: 'raw')
+    results2 = Cloudinary::Api.resources(type: 'upload', prefix: folder, format: 'pdf')
     resources = results["resources"]
+    resources2 = results2["resources"]
     ids = resources.map {|res| res["url"]}
-    @user.cv_array.replace(ids)
+    ids2 = resources2.map {|res| res["url"]}
+    cv_urls = ids + ids2
+    @user.cv_array.replace(cv_urls)
     @user.update(cv_params)
     @user.save
     respond_to do |format|
