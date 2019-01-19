@@ -23,7 +23,8 @@
 
 <p id="data"></p>
 <% @user.video_array.each do |video| %>
-  <%= cl_video_tag video, controls: true %>
+  <%= cl_video_tag video, cloud_name: 'thepav', controls: true %>
+  <%= link_to "Delete", delete_video_user_url(video), :method => :delete, :confirm => "You sure?" %>
 <% end  %>
 
 

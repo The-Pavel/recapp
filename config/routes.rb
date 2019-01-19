@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         put :update_video
         patch :update_cv
         put :update_cv
+        delete :delete_video
       end
   end
   root to: 'pages#home'

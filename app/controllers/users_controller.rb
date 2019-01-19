@@ -10,7 +10,7 @@ skip_before_action :verify_authenticity_token
   def update_video
     @user = User.find(params[:id])
     folder = @user.id.to_s
-    results = Cloudinary::Api.resources(type: 'upload', resource_type: 'video', prefix: folder)
+    results = Cloudinary::Api.resources(cloud_name: 'thepav', type: 'upload', resource_type: 'video', prefix: folder)
     resources = results["resources"]
     ids = resources.map {|res| res["url"]}
     @user.video_array.replace(ids)
@@ -23,6 +23,12 @@ skip_before_action :verify_authenticity_token
 
     rescue Cloudinary::CarrierWave::UploadError
       render plain: "File couldn't be uploaded"
+  end
+
+  def delete_video(video)
+    url = video.split('/').last.split('.').first
+    Cloudinary::Uploader.destroy('#{current_user.id.to_s}/#{url}', resource_type: 'video')
+    current_user.update_video
   end
 
   def update_cv
