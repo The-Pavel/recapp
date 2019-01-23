@@ -17,6 +17,23 @@ videoElement.controls = false;
 var mediaRecorder;
 var chunks = [];
 var count = 0;
+var deleteButtons = document.querySelectorAll('button#delete_video')
+// console.log(deleteButtons)
+
+deleteButtons.forEach(function(button) {
+  button.addEventListener("click", function(e) {
+    let video = e.target.attributes[1].nodeValue;
+    console.log(video.split("/")[8])
+    let videoURL = video.split("/")[8].split(".")[0];
+    var formData = new FormData();
+    var xhr = new XMLHttpRequest();
+    formData.append('api_key', api_key);
+    formData.append('app_secret', api_key);
+    xhr.open("DELETE", `https://api.cloudinary.com/v1_1/thepav/${user_id}/${videoURL}`);
+    xhr.send(formData);
+
+  })
+});
 
 const recordedVideo = document.querySelector('video#recorded');
 
@@ -40,157 +57,157 @@ saveBtn.onclick = function onBtnSaveClicked (){
 
       xhr.onreadystatechange = function () {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            console.log(this.status);
-            alert("Successfully uploaded");
+          console.log(this.status);
+          alert("Successfully uploaded");
             // setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 3000);
             $.ajax({
-            type: 'PATCH',
-            url: user_url,
-            data: JSON.stringify(file),
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            cache: false,
-            success: function (json)
+              type: 'PATCH',
+              url: user_url,
+              data: JSON.stringify(file),
+              processData: false,
+              contentType: false,
+              dataType: 'json',
+              cache: false,
+              success: function (json)
               {
 
                 if (json.Success){
-                    console.log(json);
+                  console.log(json);
 
 
-                          }
+                }
                 else
-                    {
+                {
                               // handle audio upload failure reported
                               // back from server (I have a json.Error.Msg)
+                            }
+                            setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
                           }
-                    setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
-                      }
-                      , error: function (jqXHR, textStatus, errorThrown)
-                      {
-                          alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
+                          , error: function (jqXHR, textStatus, errorThrown)
+                          {
+                            alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
                           // handle audio upload failure
-                      }
+                        }
 
-                    });
-                } }
+                      });
+          } }
 
-            document.querySelector('input[name="videoupload"]').value = ""; }
+          document.querySelector('input[name="videoupload"]').value = ""; }
 
-  else {
-    alert("Please select a file")
-  }
-}
+          else {
+            alert("Please select a file")
+          }
+        }
 
-saveCVBtn.onclick = function onBtnCVSaveClicked (){
+        saveCVBtn.onclick = function onBtnCVSaveClicked (){
 
-  if (document.querySelector('input[name="cvupload').value != "")
-  {
-    for (var i = 0; i < document.querySelector('input[name="cvupload"]').files.length; i++) {
+          if (document.querySelector('input[name="cvupload').value != "")
+          {
+            for (var i = 0; i < document.querySelector('input[name="cvupload"]').files.length; i++) {
 
-      var file = document.querySelector('input[name="cvupload').files[i];
-      var formData = new FormData();
-      formData.append('upload_preset', 'tda0doq1');
-      formData.append('api_key', api_key);
-      formData.append('folder', user_id);
-      formData.append('file', file);
-      formData.append('resource_type', 'raw');
+              var file = document.querySelector('input[name="cvupload').files[i];
+              var formData = new FormData();
+              formData.append('upload_preset', 'tda0doq1');
+              formData.append('api_key', api_key);
+              formData.append('folder', user_id);
+              formData.append('file', file);
+              formData.append('resource_type', 'raw');
 
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
-      xhr.send(formData); };
+              var xhr = new XMLHttpRequest();
+              xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
+              xhr.send(formData); };
 
-      xhr.onreadystatechange = function () {
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            console.log(this.status);
-            alert("Successfully uploaded");
+              xhr.onreadystatechange = function () {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                  console.log(this.status);
+                  alert("Successfully uploaded");
             // setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 3000);
             $.ajax({
-            type: 'PATCH',
-            url: cv_url,
-            data: JSON.stringify(file),
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            cache: false,
-            success: function (json)
+              type: 'PATCH',
+              url: cv_url,
+              data: JSON.stringify(file),
+              processData: false,
+              contentType: false,
+              dataType: 'json',
+              cache: false,
+              success: function (json)
               {
 
                 if (json.Success){
-                    console.log(json);
+                  console.log(json);
 
 
-                          }
+                }
                 else
-                    {
+                {
                               // handle audio upload failure reported
                               // back from server (I have a json.Error.Msg)
+                            }
+                            setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
                           }
-                    setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
-                      }
-                      , error: function (jqXHR, textStatus, errorThrown)
-                      {
-                          alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
+                          , error: function (jqXHR, textStatus, errorThrown)
+                          {
+                            alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
                           // handle audio upload failure
-                      }
+                        }
 
-                    });
-                } }
+                      });
+          } }
 
-            document.querySelector('input[name="cvupload"]').value = ""; }
+          document.querySelector('input[name="cvupload"]').value = ""; }
 
-  else {
-    alert("Please select a file")
-  }
-}
+          else {
+            alert("Please select a file")
+          }
+        }
 
 
-recBtn.onclick = function onBtnRecordClicked (){
-  if (typeof MediaRecorder === 'undefined' || !navigator.mediaDevices.getUserMedia) {
-    alert('MediaRecorder or navigator.mediaDevices.getUserMedia is NOT supported on your browser, use Firefox or Chrome instead.');
-  }else {
-    recBtn.disabled = true;
-    stopBtn.disabled = false;
+        recBtn.onclick = function onBtnRecordClicked (){
+          if (typeof MediaRecorder === 'undefined' || !navigator.mediaDevices.getUserMedia) {
+            alert('MediaRecorder or navigator.mediaDevices.getUserMedia is NOT supported on your browser, use Firefox or Chrome instead.');
+          }else {
+            recBtn.disabled = true;
+            stopBtn.disabled = false;
 
-    navigator.mediaDevices.getUserMedia(constraints)
-    .then(function(stream) {
-      /* use the stream */
-      if (typeof MediaRecorder.isTypeSupported == 'function'){
+            navigator.mediaDevices.getUserMedia(constraints)
+            .then(function(stream) {
+              /* use the stream */
+              if (typeof MediaRecorder.isTypeSupported == 'function'){
         /*
           MediaRecorder.isTypeSupported is a function announced in https://developers.google.com/web/updates/2016/01/mediarecorder and later introduced in the MediaRecorder API spec http://www.w3.org/TR/mediastream-recording/
-        */
-        if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
-          var options = {mimeType: 'video/webm;codecs=vp9'};
-        } else if (MediaRecorder.isTypeSupported('video/webm;codecs=h264')) {
-          var options = {mimeType: 'video/webm;codecs=h264'};
-        } else  if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8')) {
-          var options = {mimeType: 'video/webm;codecs=vp8'};
+          */
+          if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
+            var options = {mimeType: 'video/webm;codecs=vp9'};
+          } else if (MediaRecorder.isTypeSupported('video/webm;codecs=h264')) {
+            var options = {mimeType: 'video/webm;codecs=h264'};
+          } else  if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8')) {
+            var options = {mimeType: 'video/webm;codecs=vp8'};
+          }
+          mediaRecorder = new MediaRecorder(stream, options);
+        }else{
+          log('isTypeSupported is not supported, using default codecs for browser');
+          mediaRecorder = new MediaRecorder(stream);
         }
-        mediaRecorder = new MediaRecorder(stream, options);
-      }else{
-        log('isTypeSupported is not supported, using default codecs for browser');
-        mediaRecorder = new MediaRecorder(stream);
-      }
 
-      mediaRecorder.start(10);
-      videoElement.srcObject = stream;
-      videoElement.play();
+        mediaRecorder.start(10);
+        videoElement.srcObject = stream;
+        videoElement.play();
 
-      stream.getTracks().forEach(function(track) {
-        log(track.kind+":"+JSON.stringify(track.getSettings()));
-        console.log(track.getSettings());
-      })
+        stream.getTracks().forEach(function(track) {
+          log(track.kind+":"+JSON.stringify(track.getSettings()));
+          console.log(track.getSettings());
+        })
 
-      mediaRecorder.ondataavailable = function(e) {
-        chunks.push(e.data);
-      };
+        mediaRecorder.ondataavailable = function(e) {
+          chunks.push(e.data);
+        };
 
-      mediaRecorder.onerror = function(e){
-        log('Error: ' + e);
-        console.log('Error: ', e);
-      };
+        mediaRecorder.onerror = function(e){
+          log('Error: ' + e);
+          console.log('Error: ', e);
+        };
 
-      mediaRecorder.onstart = function(){
+        mediaRecorder.onstart = function(){
         // log('Started & state = ' + mediaRecorder.state);
       };
 
@@ -203,7 +220,7 @@ recBtn.onclick = function onBtnRecordClicked (){
         function chunksToDataUrl(callback) {
           var reader = new FileReader();
           reader.onload = function() {
-          callback(reader.result);
+            callback(reader.result);
           };
           reader.readAsDataURL(blob);
 
@@ -222,56 +239,56 @@ recBtn.onclick = function onBtnRecordClicked (){
           var xhr = new XMLHttpRequest();
           xhr.open("POST", 'https://api.cloudinary.com/v1_1/thepav/auto/upload');
           xhr.onreadystatechange = function () {
-              if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-                  console.log(this.status);
-                  alert("Video uploaded to your cloudinary media library");
+            if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+              console.log(this.status);
+              alert("Video uploaded to your cloudinary media library");
 
-                  $.ajax({
-                  type: 'PATCH',
-                  url: user_url,
-                  data: JSON.stringify(blob),
-                  processData: false,
-                  contentType: false,
-                  dataType: 'json',
-                  cache: false,
-                  success: function (json)
+              $.ajax({
+                type: 'PATCH',
+                url: user_url,
+                data: JSON.stringify(blob),
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                cache: false,
+                success: function (json)
+                {
+                  if (json.Success)
                   {
-                      if (json.Success)
-                      {
-                        console.log(json);
-                      }
-                      else
-                      {
+                    console.log(json);
+                  }
+                  else
+                  {
                           // handle audio upload failure reported
                           // back from server (I have a json.Error.Msg)
+                        }
+                        setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
                       }
-                      setTimeout(function(){ window.location = dashboard_url; location.reload(); }, 1000);
-                  }
-                  , error: function (jqXHR, textStatus, errorThrown)
-                  {
-                      alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
+                      , error: function (jqXHR, textStatus, errorThrown)
+                      {
+                        alert('Error! '+ textStatus + ' - ' + errorThrown + '\n\n' + jqXHR.responseText);
                       // handle audio upload failure
-                  }
+                    }
                   });
-              } }
-          xhr.send(formData);
-          sbmtBtn.disabled = true;
+            } }
+            xhr.send(formData);
+            sbmtBtn.disabled = true;
 
 
+          }
         }
-    }
 
-      mediaRecorder.onwarning = function(e){
-        log('Warning: ' + e);
-      };
-    })
-    .catch(function(err) {
-      /* handle the error */
-      log('navigator.mediaDevices.getUserMedia error: '+err);
-      console.log('navigator.mediaDevices.getUserMedia error: ', err);
+        mediaRecorder.onwarning = function(e){
+          log('Warning: ' + e);
+        };
+      })
+.catch(function(err) {
+  /* handle the error */
+  log('navigator.mediaDevices.getUserMedia error: '+err);
+  console.log('navigator.mediaDevices.getUserMedia error: ', err);
 
-    });
-  }
+});
+}
 }
 
 stopBtn.onclick = function onBtnStopClicked(){
@@ -321,52 +338,52 @@ function getBrowser(){
    fullVersion = nAgt.substring(verOffset+6);
    if ((verOffset=nAgt.indexOf("Version"))!=-1)
      fullVersion = nAgt.substring(verOffset+8);
-  }
+ }
   // In MSIE, the true version is after "MSIE" in userAgent
   else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
    browserName = "Microsoft Internet Explorer";
    fullVersion = nAgt.substring(verOffset+5);
-  }
+ }
   // In Chrome, the true version is after "Chrome"
   else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
    browserName = "Chrome";
    fullVersion = nAgt.substring(verOffset+7);
-  }
+ }
   // In Safari, the true version is after "Safari" or after "Version"
   else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
    browserName = "Safari";
    fullVersion = nAgt.substring(verOffset+7);
    if ((verOffset=nAgt.indexOf("Version"))!=-1)
      fullVersion = nAgt.substring(verOffset+8);
-  }
+ }
   // In Firefox, the true version is after "Firefox"
   else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
    browserName = "Firefox";
    fullVersion = nAgt.substring(verOffset+8);
-  }
+ }
   // In most other browsers, "name/version" is at the end of userAgent
   else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) <
-       (verOffset=nAgt.lastIndexOf('/')) )
+   (verOffset=nAgt.lastIndexOf('/')) )
   {
    browserName = nAgt.substring(nameOffset,verOffset);
    fullVersion = nAgt.substring(verOffset+1);
    if (browserName.toLowerCase()==browserName.toUpperCase()) {
     browserName = navigator.appName;
-   }
   }
+}
   // trim the fullVersion string at semicolon/space if present
   if ((ix=fullVersion.indexOf(";"))!=-1)
-     fullVersion=fullVersion.substring(0,ix);
+  fullVersion=fullVersion.substring(0,ix);
   if ((ix=fullVersion.indexOf(" "))!=-1)
-     fullVersion=fullVersion.substring(0,ix);
+   fullVersion=fullVersion.substring(0,ix);
 
-  majorVersion = parseInt(''+fullVersion,10);
-  if (isNaN(majorVersion)) {
+ majorVersion = parseInt(''+fullVersion,10);
+ if (isNaN(majorVersion)) {
    fullVersion  = ''+parseFloat(navigator.appVersion);
    majorVersion = parseInt(navigator.appVersion,10);
-  }
+ }
 
-  return browserName;
+ return browserName;
 }
 
 

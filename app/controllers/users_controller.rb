@@ -25,9 +25,9 @@ skip_before_action :verify_authenticity_token
       render plain: "File couldn't be uploaded"
   end
 
-  def delete_video(video)
+  def delete_video(user. video)
     url = video.split('/').last.split('.').first
-    Cloudinary::Uploader.destroy('#{current_user.id.to_s}/#{url}', resource_type: 'video')
+    Cloudinary::Uploader.destroy('#{user.id.to_s}/#{url}', resource_type: 'video')
     current_user.update_video
   end
 
@@ -55,7 +55,7 @@ skip_before_action :verify_authenticity_token
 
   private
     def user_params
-      params.permit(:id, :email, :first_name, :last_name)
+      params.permit(:id, :email, :first_name, :last_name, :video)
     end
 
     def video_params

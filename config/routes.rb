@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
   devise_for :employers, controllers: { registrations: 'employers/registrations' }
   devise_for :users, controllers: { registrations: 'users/registrations' }
-  resources  :users, :only => [:update] do
+  resources  :users, only: [:update] do
       member do
         patch :update_video
         put :update_video
         patch :update_cv
         put :update_cv
-        delete :delete_video
+        # delete ':video/delete_video', to: "users#delete_video", as: "delete_video"
       end
+      # collection do
+      #   delete ':id/:video/delete_video', to: "users#delete_video", as: "delete_video"
+      # end
+
   end
   root to: 'pages#home'
   get 'employer/dashboard/:employer_id' , to: "employer_pages#employer_dashboard", as: 'employer_dashboard'
