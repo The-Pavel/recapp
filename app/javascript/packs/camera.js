@@ -23,15 +23,23 @@ var deleteButtons = document.querySelectorAll('button#delete_video')
 deleteButtons.forEach(function(button) {
   button.addEventListener("click", function(e) {
     let video = e.target.attributes[1].nodeValue;
-    console.log(video.split("/")[8])
-    let videoURL = video.split("/")[8].split(".")[0];
+    console.log(video)
+    let videoURL = video.split("/")[8];
     var formData = new FormData();
     var xhr = new XMLHttpRequest();
     formData.append('api_key', api_key);
-    formData.append('app_secret', api_key);
-    xhr.open("DELETE", `https://api.cloudinary.com/v1_1/thepav/${user_id}/${videoURL}`);
+    formData.append('app_secret', app_secret);
+    // formData.append('Access-Control-Allow-Origin: *', true);
+    formData.append('folder', user_id);
+    formData.append('file', videoURL);
+    formData.append('resource_type', "video")
+    xhr.open("DELETE", `https://api.cloudinary.com/v1_1/thepav/auto/destroy`);
     xhr.send(formData);
+    xhr.onreadystatechange = function () {
 
+          console.log(this.status);
+
+    };
   })
 });
 
