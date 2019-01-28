@@ -5,7 +5,7 @@
   transition: all 0.3s ease;
   height: 5.3125rem;
   width: 100%;
-  padding: 0 6.25rem;
+  padding: 0 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,9 +24,10 @@
 
 /* User Avatar */
 .navbar-wagon .avatar {
-  height: 35px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
+  margin-right: 15px;
 }
 
 /* Right section */
@@ -72,4 +73,13 @@
 .navbar-wagon-dropdown-menu li > a:hover {
   background: transparent !important;
   color: black !important;
+}
+
+.navbar-db {
+  top: 0;
+  height: 8.3125rem;
+}
+.dropdown {
+  color: white;
+  font-size: 16px;
 }

@@ -1,13 +1,7 @@
-<%= link_to "Add information", edit_user_registration_path(current_user)  %>
-<ul style="list-style-type: none;">
-<li>First name: <%= @user.first_name %></li>
-<li>Last name: <%= @user.last_name %></li>
-<li>Contact information: <%= @user.contact_info %></li>
-<% @user.cv_array.each do |cv| %>
-  <p> CV <a href="<%= cv %>">view</a></p>
-<% end  %>
+<%= render 'shared/navbar-dashboard' %>
+<%= render 'shared/sidebar' %>
 
-</ul>
+<div class="container">
 
  <video id="gum" playsinline autoplay></video>
   <video id="recorded" playsinline loop></video>
@@ -26,8 +20,13 @@
   <%= cl_video_tag video, controls: true %>
 <% end  %>
 
+<% @user.cv_array.each do |cv| %>
+  <p> CV <a href="<%= cv %>">view</a></p>
+<% end  %>
 
+</ul>
 
+</div>
 
 <%= javascript_tag do %>
    user_id = '<%= @user.id %>';

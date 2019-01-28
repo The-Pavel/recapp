@@ -1,0 +1,22 @@
+#sidebar {
+  position: fixed;
+  width: 220px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  text-align: left;
+  border-right: 1px solid $light-gray;
+  display: flex;
+  align-items: center;
+
+  ul {
+    padding-left: 20%;
+  }
+
+  li {
+    list-style: none;
+    font-size: 14px;
+    line-height: 48px;
+    color: $dark-gray;
+  }
+}
