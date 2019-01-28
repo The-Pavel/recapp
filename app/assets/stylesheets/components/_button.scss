@@ -36,7 +36,7 @@
   box-shadow: inset 0 0 0 0.0625rem white;
   color: white;
 }
-.cta-primary-banner {
+.cta-primary-banner, .form-actions .cta-primary-banner {
   background-color: white;
   color: $blue;
   box-shadow: none;
@@ -45,4 +45,7 @@
   border: none;
   height: 48px;
   padding: 0 48px;
+}
+.form-actions .cta-primary-banner {
+  border: 1px solid $blue;
 }
