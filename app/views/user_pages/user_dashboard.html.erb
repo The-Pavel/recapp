@@ -1,31 +1,53 @@
 <%= render 'shared/navbar-dashboard' %>
-<%= render 'shared/sidebar' %>
 
-<div class="container">
+<div class="dashboard-main-container d-flex">
 
- <video id="gum" playsinline autoplay></video>
-  <video id="recorded" playsinline loop></video>
-  <button id="rec" >Record</button>
-  <button id="stop" disabled>Stop</button>
-  <button id="submit" disabled>Save recording</button>
-  <p>Upload your video <input type="file" name="videoupload" multiple></p>
-  <button id="save">Save</button>
-  <p>Upload your CV <input type="file" name="cvupload" multiple></p>
-  <button id="savecv">Save</button>
+  <%= render 'shared/sidebar' %>
 
+  <div class="dashboard-container">
+    <h2>Dashboard</h2>
+    <div class="uploader">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="btn-uploader d-flex justify-content-center align-items-center bg-blue">
+            <span>Upload Resume</span>
+            <div class="btn-round d-flex justify-content-center align-items-center"><%= image_tag('upload-button-blue.svg', class: "img-sm") %></div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="btn-uploader d-flex justify-content-center align-items-center bg-yellow">
+            <span>Upload Video CV</span>
+            <div class="btn-round d-flex justify-content-center align-items-center"><%= image_tag('upload-button.svg', class: "img-sm") %></div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="btn-uploader d-flex justify-content-center align-items-center bg-purple">
+            <span>Record Video CV</span>
+            <div class="btn-round d-flex justify-content-center align-items-center"><%= image_tag('video-camera-purple.svg', class: "img-sm") %></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <video id="gum" playsinline autoplay></video>
+    <video id="recorded" playsinline loop></video>
+    <button id="rec" >Record</button>
+    <button id="stop" disabled>Stop</button>
+    <button id="submit" disabled>Save recording</button>
+    <p>Upload your video <input type="file" name="videoupload" multiple></p>
+    <button id="save">Save</button>
+    <p>Upload your CV <input type="file" name="cvupload" multiple></p>
+    <button id="savecv">Save</button>
 
-<p id="data"></p>
-<% @user.video_array.each do |video| %>
-  <%= cl_video_tag video, controls: true %>
-<% end  %>
+    <p id="data"></p>
+    <% @user.video_array.each do |video| %>
+      <%= cl_video_tag video, controls: true %>
+    <% end  %>
 
-<% @user.cv_array.each do |cv| %>
-  <p> CV <a href="<%= cv %>">view</a></p>
-<% end  %>
-
-</ul>
-
+    <% @user.cv_array.each do |cv| %>
+      <p> CV <a href="<%= cv %>">view</a></p>
+    <% end  %>
+  </div>
 </div>
 
 <%= javascript_tag do %>

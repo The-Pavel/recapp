@@ -1,9 +1,9 @@
-<div id="sidebar">
-  <ul>
-    <li>Dashboard</li><br>
-    <li>Resumes</li><br>
-    <li>Video CVs</li><br>
-    <li>Saved Jobs</li><br>
-    <li>Messages</li><br>
-  </ul>
-</div>
+<nav class="sidebar-container">
+  <div class="sidebar-links d-flex flex-column align-items-start">
+    <%= link_to "Dashboard", user_dashboard_path(current_user), class: "sidebar-item" %>
+    <a href="" class='sidebar-item'>Resumes</a>
+    <a href="" class='sidebar-item'>Video CVs</a>
+    <a href="" class='sidebar-item'>Saved Jobs</a>
+    <a href="" class='sidebar-item'>Messages</a>
+  </div>
+</nav>
