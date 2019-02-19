@@ -23,7 +23,10 @@
 
 <p id="data"></p>
 <% @user.video_array.each do |video| %>
-  <%= cl_video_tag video, controls: true %>
+  <%= cl_video_tag video, cloud_name: 'thepav', controls: true %>
+  <!-- when passing (video) into delete_video_user_url it alters the route to include the video url -->
+  <button id="delete_video" value=<%= video %>>Delete</button>
+
 <% end  %>
 
 
@@ -34,6 +37,7 @@
    user_url = '<%= "//localhost:3000/users/#{@user.id}/update_video" %>';
    cv_url = '<%= "//localhost:3000/users/#{@user.id}/update_cv" %>';
    api_key = '<% ENV['api_key'] %>';
+   app_secret = '<% ENV['app_secret'] %>';
    dashboard_url = '<%= "//localhost:3000/user/dashboard/#{@user.id}" %>';
 <% end %>
 
