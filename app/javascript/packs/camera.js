@@ -24,7 +24,7 @@ deleteButtons.forEach(function(button) {
   button.addEventListener("click", function(e) {
     let video = e.target.attributes[1].nodeValue;
     console.log(video)
-    let videoURL = video.split("/")[8];
+    let videoURL = video.split("/")[8].split(".")[0];
     var formData = new FormData();
     var xhr = new XMLHttpRequest();
     formData.append('api_key', api_key);
@@ -33,7 +33,7 @@ deleteButtons.forEach(function(button) {
     formData.append('folder', user_id);
     formData.append('file', videoURL);
     formData.append('resource_type', "video")
-    xhr.open("DELETE", `https://api.cloudinary.com/v1_1/thepav/auto/destroy`);
+    xhr.open("GET", `https://api.cloudinary.com/v1_1/thepav/${user_id}/${videoURL}/destroy`);
     xhr.send(formData);
     xhr.onreadystatechange = function () {
 

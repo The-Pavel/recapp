@@ -25,17 +25,17 @@ skip_before_action :verify_authenticity_token
       render plain: "File couldn't be uploaded"
   end
 
-  def delete_video(user. video)
+  def delete_video(video)
     url = video.split('/').last.split('.').first
-    Cloudinary::Uploader.destroy('#{user.id.to_s}/#{url}', resource_type: 'video')
+    Cloudinary::Uploader.destroy('#{current_user.id.to_s}/#{url}', resource_type: 'video')
     current_user.update_video
   end
 
   def update_cv
     @user = User.find(params[:id])
     folder = @user.id.to_s
-    results = Cloudinary::Api.resources(type: 'upload', prefix: folder, resource_type: 'raw')
-    results2 = Cloudinary::Api.resources(type: 'upload', prefix: folder, format: 'pdf')
+    results = Cloudinary::Api.resources(cloud_name: 'thepav', type: 'upload', prefix: folder, resource_type: 'raw')
+    results2 = Cloudinary::Api.resources(cloud_name: 'thepav', type: 'upload', prefix: folder, format: 'pdf')
     resources = results["resources"]
     resources2 = results2["resources"]
     ids = resources.map {|res| res["url"]}
