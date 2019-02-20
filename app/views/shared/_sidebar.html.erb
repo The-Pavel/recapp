@@ -1,9 +1,23 @@
 <nav class="sidebar-container">
   <div class="sidebar-links d-flex flex-column align-items-start">
-    <%= link_to "Dashboard", user_dashboard_path(current_user), class: "sidebar-item" %>
+    <%= link_to "Dashboard", user_dashboard_path(current_user), class: "sidebar-item sidebar-item-active" %>
     <a href="" class='sidebar-item'>Resumes</a>
+    <!-- <button onclick='onMenuClicked(this)'>Resumes</button> -->
     <a href="" class='sidebar-item'>Video CVs</a>
     <a href="" class='sidebar-item'>Saved Jobs</a>
     <a href="" class='sidebar-item'>Messages</a>
   </div>
 </nav>
+
+<!-- <script>
+var sidebarItems = document.querySelectorAll(".sidebar-item");
+
+for (var i = 0; i < sidebarItems.length; i++) {
+  sidebarItems[i].addEventListener("click", function() {
+    document.querySelector(".sidebar-item-active").classList.remove('sidebar-item-active');
+    this.classList.add('sidebar-item-active');
+  });
+}
+
+</script>
+ -->

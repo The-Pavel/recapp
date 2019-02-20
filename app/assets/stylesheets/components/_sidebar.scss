@@ -16,7 +16,10 @@
   width: 100%;
   padding: 1.5rem 0 1.5rem 3.5rem;
 }
-
 .sidebar-item:hover {
   text-decoration: none;
+}
+.sidebar-item-active {
+  background-color: #FAFBFD;
+  border-left: 4px solid $blue;
 }
