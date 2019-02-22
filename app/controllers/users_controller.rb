@@ -10,7 +10,7 @@ skip_before_action :verify_authenticity_token
   def update_video
     @user = User.find(params[:id])
     folder = @user.id.to_s
-    results = Cloudinary::Api.resources(type: 'upload', resource_type: 'video', prefix: folder)
+    results = Cloudinary::Api.resources(cloud_name: 'thepav', type: 'upload', resource_type: 'video', prefix: folder)
     resources = results["resources"]
     ids = resources.map {|res| res["url"]}
     @user.video_array.replace(ids)
@@ -25,11 +25,17 @@ skip_before_action :verify_authenticity_token
       render plain: "File couldn't be uploaded"
   end
 
+  def delete_video(video)
+    url = video.split('/').last.split('.').first
+    Cloudinary::Uploader.destroy('#{current_user.id.to_s}/#{url}', resource_type: 'video')
+    current_user.update_video
+  end
+
   def update_cv
     @user = User.find(params[:id])
     folder = @user.id.to_s
-    results = Cloudinary::Api.resources(type: 'upload', prefix: folder, resource_type: 'raw')
-    results2 = Cloudinary::Api.resources(type: 'upload', prefix: folder, format: 'pdf')
+    results = Cloudinary::Api.resources(cloud_name: 'thepav', type: 'upload', prefix: folder, resource_type: 'raw')
+    results2 = Cloudinary::Api.resources(cloud_name: 'thepav', type: 'upload', prefix: folder, format: 'pdf')
     resources = results["resources"]
     resources2 = results2["resources"]
     ids = resources.map {|res| res["url"]}
@@ -49,7 +55,7 @@ skip_before_action :verify_authenticity_token
 
   private
     def user_params
-      params.permit(:id, :email, :first_name, :last_name)
+      params.permit(:id, :email, :first_name, :last_name, :video)
     end
 
     def video_params

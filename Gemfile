@@ -19,6 +19,7 @@ gem 'webpacker'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'jquery-rails'
+gem 'rack-cors'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
