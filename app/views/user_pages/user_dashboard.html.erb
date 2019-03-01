@@ -3,10 +3,15 @@
 <li>First name: <%= @user.first_name %></li>
 <li>Last name: <%= @user.last_name %></li>
 <li>Contact information: <%= @user.contact_info %></li>
-<% @user.cv_array.each do |cv| %>
-  <p> CV <a href="<%= cv %>">view</a></p>
-<% end  %>
+<% @user.cvs.each do |cv| %>
+  <% if cv.is_video == true %>
+    <%=cl_video_tag cv.file.file.public_id,  autoplay: true, height: 600, width: 450 %>
+  <% else %>
+   <%= link_to "View file", "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}" %>
+  <% end  %>
+<% end %>
 
+<%= link_to "Add CV", new_cv_path %>
 </ul>
 
  <video id="gum" playsinline autoplay></video>

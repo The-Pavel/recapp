@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       # end
 
   end
+
+  resources :cvs, only: [:new, :create, :edit, :update, :show]
   root to: 'pages#home'
   get 'employer/dashboard/:employer_id' , to: "employer_pages#employer_dashboard", as: 'employer_dashboard'
   get 'user/dashboard/:user_id' , to: "user_pages#user_dashboard", as: 'user_dashboard'
