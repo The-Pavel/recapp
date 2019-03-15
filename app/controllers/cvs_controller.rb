@@ -1,4 +1,7 @@
 class CvsController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
+
   def new
     @cv = Cv.new
     @cv.user = current_user
@@ -11,8 +14,15 @@ class CvsController < ApplicationController
     redirect_to user_dashboard_path(current_user)
   end
 
+
   private
+
   def cv_params
-    params.require(:cv).permit(:title, :file, :file_cache, :is_video)
+    if params[:cv].present?
+      params.require(:cv).permit(:title, :file, :file_cache, :is_video)
+    else
+      params.permit(:title, :file, :file_cache, :is_video)
+   end
   end
+
 end

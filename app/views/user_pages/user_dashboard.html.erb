@@ -7,40 +7,27 @@
   <% if cv.is_video == true %>
     <%=cl_video_tag cv.file.file.public_id,  autoplay: true, height: 600, width: 450 %>
   <% else %>
-   <%= link_to "View file", "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}" %>
+    <%= cv.title %> <br>
+    <%= link_to (cl_image_tag cv.file.file.public_id, {size: '70x100', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
   <% end  %>
 <% end %>
 
 <%= link_to "Add CV", new_cv_path %>
 </ul>
 
- <video id="gum" playsinline autoplay></video>
+  <video id="gum" playsinline autoplay></video>
   <video id="recorded" playsinline loop></video>
   <button id="rec" >Record</button>
   <button id="stop" disabled>Stop</button>
   <button id="submit" disabled>Save recording</button>
-  <p>Upload your video <input type="file" name="videoupload" multiple></p>
-  <button id="save">Save</button>
-  <p>Upload your CV <input type="file" name="cvupload" multiple></p>
-  <button id="savecv">Save</button>
-
-
-
-<p id="data"></p>
-<% @user.video_array.each do |video| %>
-  <%= cl_video_tag video, cloud_name: 'thepav', controls: true %>
-  <!-- when passing (video) into delete_video_user_url it alters the route to include the video url -->
-  <button id="delete_video" value=<%= video %>>Delete</button>
-
-<% end  %>
+  Title <input type="text" name ="title">
+  <p id="data"></p>
 
 
 
 
 <%= javascript_tag do %>
    user_id = '<%= @user.id %>';
-   user_url = '<%= "//localhost:3000/users/#{@user.id}/update_video" %>';
-   cv_url = '<%= "//localhost:3000/users/#{@user.id}/update_cv" %>';
    api_key = '<% ENV['api_key'] %>';
    app_secret = '<% ENV['app_secret'] %>';
    dashboard_url = '<%= "//localhost:3000/user/dashboard/#{@user.id}" %>';
