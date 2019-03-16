@@ -1,6 +1,7 @@
 class CvsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  Cloudinary::config({ cloud_name: 'thepav', api_key: ENV['api_key'], app_secret: ENV['app_secret']})
 
   def new
     @cv = Cv.new
