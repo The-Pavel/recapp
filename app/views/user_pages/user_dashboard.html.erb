@@ -5,10 +5,10 @@
 <li>Contact information: <%= @user.contact_info %></li>
 <% @user.cvs.each do |cv| %>
   <% if cv.is_video == true %>
-    <%=cl_video_tag cv.file.file.public_id,  autoplay: true, height: 600, width: 450, loop: true, controls: true %>
+    <%=cl_video_tag cv.file.file.public_id,  cloud_name: 'thepav', autoplay: true, height: 600, width: 450, loop: true, controls: true %>
   <% else %>
     <%= cv.title %> <br>
-    <%= link_to (cl_image_tag cv.file.file.public_id, {size: '70x100', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
+    <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank', cloud_name: 'thepav' %>
   <% end  %>
 <% end %>
 <p>just text to delete later</p>
