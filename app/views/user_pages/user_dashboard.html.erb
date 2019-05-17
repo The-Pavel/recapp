@@ -5,10 +5,10 @@
 <li>Contact information: <%= @user.contact_info %></li>
 <% @user.cvs.each do |cv| %>
   <% if cv.is_video == true %>
-    <%=cl_video_tag cv.file.file.public_id,  cloud_name: 'thepav', autoplay: true, height: 600, width: 450, loop: true, controls: true %>
+    <%=cl_video_tag cv.file.file.public_id, autoplay: true, height: 600, width: 450, controls: true, muted: true %>
   <% else %>
     <%= cv.title %> <br>
-    <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank', cloud_name: 'thepav' %>
+    <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
   <% end  %>
 <% end %>
 <p>just text to delete later</p>
@@ -23,7 +23,7 @@
   <button id="submit" disabled>Save recording</button>
   Title <input type="text" name ="title">
   <p id="data"></p>
-
+  <!-- <camera data-app-id='a-a3a4b2f0-5a79-0137-da23-02f6e3696dde' id='myCamera'></camera> -->
 
 
 
