@@ -10,6 +10,8 @@
     <%= cv.title %> <br>
     <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
   <% end  %>
+  <%= link_to "Update", edit_cv_path(cv) %>
+  <%= link_to "Delete", cv_path(cv), method: :delete %>
 <% end %>
 <p>just text to delete later</p>
 
