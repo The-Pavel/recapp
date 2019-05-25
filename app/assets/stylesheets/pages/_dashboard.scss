@@ -30,3 +30,12 @@
 .bg-purple {
   background-color: $purple;
 }
+.card-deck {
+  .card {
+    border: none;
+  }
+  .video-container {
+    max-width: 100%;
+    height: 240px;
+  }
+}

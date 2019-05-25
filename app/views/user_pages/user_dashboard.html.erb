@@ -1,6 +1,6 @@
 <%= render 'shared/navbar-dashboard' %>
 
-<div class="dashboard-main-container d-flex">
+<div class="dashboard-main-container d-flex flex-column">
 
   <%#= render 'shared/sidebar' %>
 
@@ -29,24 +29,33 @@
     </div>
   </div> -->
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @user.cv_array.each_with_index do |cv, index| %>
-      <tr>
-        <th scope="row"><%= index + 1 %></th>
-        <td>CV</td>
-        <td><a href="<%= cv %>" target="_blank">view</a></td>
-      </tr>
+  <div class="list-group">
+    <% @user.cv_array.each do |cv| %>
+      <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">CV</h5>
+          <small>3 days ago</small>
+        </div>
+        <p class="mb-1"><a href="<%= cv %>" target="_blank">view</a></p>
+        <!-- <small>Donec id elit non mi porta.</small> -->
+      </div>
     <% end %>
-    </tbody>
-  </table>
+  </div>
+
+  <div class="card-deck">
+    <% @user.video_array.each do |video| %>
+      <div class="card" style="width: 320px;">
+        <%= cl_video_tag video, cloud_name: 'thepav', controls: true, :class => "video-container" %>
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <button id="delete_video" class="btn btn-primary" value=<%= video %>>Delete</button>
+        </div>
+      </div>
+    <% end  %>
+  </div>
+
 </div>
 
 <!-- <li>Contact information: <%#= @user.contact_info %></li> -->
@@ -60,17 +69,6 @@
   <button id="save">Save</button>
   <p>Upload your CV <input type="file" name="cvupload" multiple></p>
   <button id="savecv">Save</button>
-
-
-
-<p id="data"></p>
-<% @user.video_array.each do |video| %>
-  <%= cl_video_tag video, cloud_name: 'thepav', controls: true %>
-  <!-- when passing (video) into delete_video_user_url it alters the route to include the video url -->
-  <button id="delete_video" value=<%= video %>>Delete</button>
-
-<% end  %>
-
 
 <%= javascript_tag do %>
    user_id = '<%= @user.id %>';
