@@ -1,0 +1,13 @@
+
+<%= simple_form_for(@cv) do |f| %>
+  <%= f.input :title, required: true, autofocus: true, label: 'Pick a cv title' %>
+  <%= f.label "I am uploading a video"  %>
+  <%= f.check_box :is_video %>
+  <%= f.file_field :file %>
+  <%= f.input :file_cache, as: :hidden %>
+  <%= f.button :submit, "Submit" %>
+<% end %>
+
+
+
+

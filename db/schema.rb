@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181117065242) do
+ActiveRecord::Schema.define(version: 20190228110613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,20 @@ ActiveRecord::Schema.define(version: 20181117065242) do
     t.bigint "position_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cv_id"
+    t.integer "videocv_id"
     t.index ["position_id"], name: "index_applications_on_position_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
+  end
+
+  create_table "cvs", force: :cascade do |t|
+    t.string "title"
+    t.boolean "is_video", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "file"
+    t.index ["user_id"], name: "index_cvs_on_user_id"
   end
 
   create_table "employers", force: :cascade do |t|
@@ -82,5 +94,6 @@ ActiveRecord::Schema.define(version: 20181117065242) do
 
   add_foreign_key "applications", "positions"
   add_foreign_key "applications", "users"
+  add_foreign_key "cvs", "users"
   add_foreign_key "positions", "employers"
 end

@@ -59,21 +59,41 @@
 </div>
 
 <!-- <li>Contact information: <%#= @user.contact_info %></li> -->
+<%= link_to "Add information", edit_user_registration_path(current_user)  %>
+<ul style="list-style-type: none;">
+<li>First name: <%= @user.first_name %></li>
+<li>Last name: <%= @user.last_name %></li>
+<li>Contact information: <%= @user.contact_info %></li>
+<% @user.cvs.each do |cv| %>
+  <% if cv.is_video == true %>
+    <%=cl_video_tag cv.file.file.public_id, autoplay: true, height: 600, width: 450, controls: true, muted: true %>
+  <% else %>
+    <%= cv.title %> <br>
+    <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
+  <% end  %>
+<% end %>
+<p>just text to delete later</p>
 
- <video id="gum" playsinline autoplay></video>
+<%= link_to "Add CV", new_cv_path %>
+</ul>
+
+  <!-- <video id="gum" playsinline autoplay></video>
   <video id="recorded" playsinline loop></video>
   <button id="rec" >Record</button>
   <button id="stop" disabled>Stop</button>
   <button id="submit" disabled>Save recording</button>
+<<<<<<< HEAD
   <p>Upload your video <input type="file" name="videoupload" multiple></p>
   <button id="save">Save</button>
   <p>Upload your CV <input type="file" name="cvupload" multiple></p>
   <button id="savecv">Save</button>
+=======
+  Title <input type="text" name ="title">
+  <p id="data"></p> -->
+<camera data-app-id='a-a3a4b2f0-5a79-0137-da23-02f6e3696dde' id='myCamera' data-stack='mobile'></camera>
 
 <%= javascript_tag do %>
    user_id = '<%= @user.id %>';
-   user_url = '<%= "//localhost:3000/users/#{@user.id}/update_video" %>';
-   cv_url = '<%= "//localhost:3000/users/#{@user.id}/update_cv" %>';
    api_key = '<% ENV['api_key'] %>';
    app_secret = '<% ENV['app_secret'] %>';
    dashboard_url = '<%= "//localhost:3000/user/dashboard/#{@user.id}" %>';
