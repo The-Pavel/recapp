@@ -1,3 +1,5 @@
+<!-- CAMERATAG SAMPLE SCRIPT -->
+
 <%= render 'shared/navbar' %>
 <%= link_to "Add information", edit_user_registration_path(current_user)  %>
 <ul style="list-style-type: none;">
@@ -24,16 +26,20 @@
   <button id="submit" disabled>Save recording</button>
   Title <input type="text" name ="title">
   <p id="data"></p> -->
-<camera data-app-id='a-a3a4b2f0-5a79-0137-da23-02f6e3696dde' id='myCamera' data-stack='auto'></camera>
-
-
-
+<camera id='myCamera' data-app-id='63f9c870-72c4-0130-04c5-123139045d73'></camera>
+<script>
+  CameraTag.observe("mycamera", "initialized", function(){
+        CameraTag.setup();
+        console.log("myCamera ready for commands!");
+      })
+</script>
 
 <%= javascript_tag do %>
    user_id = '<%= @user.id %>';
    api_key = '<% ENV['api_key'] %>';
    app_secret = '<% ENV['app_secret'] %>';
    dashboard_url = '<%= "//localhost:3000/user/dashboard/#{@user.id}" %>';
+
 <% end %>
 
 
