@@ -15,6 +15,27 @@ class CvsController < ApplicationController
     redirect_to user_dashboard_path(current_user)
   end
 
+  def edit
+    @cv = Cv.find(params[:id])
+    if current_user.id != @cv.user_id
+       flash[:alert] = "You are not allowed to edit this Cv"
+       redirect_to user_dashboard_path(current_user)
+     end
+  end
+
+  def update
+    @cv = Cv.find(params[:id])
+    @cv.update(cv_params)
+    @cv.save
+    redirect_to user_dashboard_path(current_user)
+  end
+
+  def destroy
+    @cv = Cv.find(params[:id])
+    @cv.destroy
+    redirect_to user_dashboard_path(current_user)
+  end
+
 
   private
 
