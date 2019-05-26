@@ -1,3 +1,4 @@
+<%= render 'shared/navbar' %>
 <%= link_to "Add information", edit_user_registration_path(current_user)  %>
 <ul style="list-style-type: none;">
 <li>First name: <%= @user.first_name %></li>
@@ -23,7 +24,7 @@
   <button id="submit" disabled>Save recording</button>
   Title <input type="text" name ="title">
   <p id="data"></p> -->
-<camera data-app-id='a-a3a4b2f0-5a79-0137-da23-02f6e3696dde' id='myCamera' data-stack='mobile'></camera>
+<camera data-app-id='a-a3a4b2f0-5a79-0137-da23-02f6e3696dde' id='myCamera' data-stack='auto'></camera>
 
 
 
