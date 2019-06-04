@@ -1,4 +1,5 @@
-import "bootstrap";
-// import "./camera.js";
+//= require popper
 
+import "bootstrap";
+import "./camera.js";
 

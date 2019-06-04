@@ -224,13 +224,18 @@
 // }
 
 // TRYING STUFF FOR CAMERATAG
-// CameraTag.observe('myCamera', 'initialized', function(){
-//   CameraTag.setup();
-//   console.log('camera initialized and setup');
+CameraTag.observe('myCamera', 'published', function(){
 
-//   // var myCamera = CameraTag.cameras["myCamera"];
-//   // var myVideo = myCamera.getVideo();
-//   // console.log(myVideo)
-// })
+  console.log('camera ready to Publish');
+
+  var myCamera = CameraTag.cameras["myCamera"];
+  var myVideo = myCamera.getVideo();
+  console.log(myVideo)
+})
+
+
+
+
+
 
 
