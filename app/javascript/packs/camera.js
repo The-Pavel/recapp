@@ -229,26 +229,53 @@ CameraTag.observe('myCamera', 'published', function(){
 
 
   var myCamera = CameraTag.cameras["myCamera"];
+  console.log(myCamera)
   var myVideo = myCamera.getVideo();
-  var video_url = myVideo.medias["720p"].slice(2,100000)
-  console.log(video_url);
+  var video_url = `https://us-assets.cameratag.com/63f9c870-72c4-0130-04c5-123139045d73/${myVideo.uuid}_720p.mp4?response-content-disposition=inline&Expires=1559654109&Signature=tM65LGO0lTmpA8ILyU~brCaNsalNtv1~cjYz~0hNbu3zZe~9m0yn~1PxGqlBUflliHXb81qPISxfalEJozOfa3n7LObxDqzytRtugdsXGm5SFZUh-ar7TZtfwKm87ljLGCmY9CbAyZg5Bp0foNqXdjMBfUhXepvZjWHxPe6VsDfUJFG2uuTXML0DvJcxfqzT7yoMC9U3bNh98M4OfO9s6sBlBCYLv0GoaHZJ1pMe559z3iOPE9jvo5RFqVoaYUPp3BXAuJ-4xE6SZW3a0teSUwvwRA7xNTzuNqppYWqAE~wND~KsAekFjU-gj2sY7BqbjHNGhSQbr3oqouZV6HyE9w__&Key-Pair-Id=APKAIYEVFIMHKY7YWGKA`
+  //
+
+    var formdata = new FormData();
+
+        formdata.append('file', video_url);
+        formdata.append('cloud_name', 'thepav');
+        formdata.append('upload_preset', 'b0evuvff');
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', "https://api.cloudinary.com/v1_1/thepav/upload",true);
+
+
+        xhr.onload = function () {
+        // do something to response
+            console.log(this.responseText);
+        };
+
+        xhr.send(formdata);
 
   // ### TO DO: add input to add a name to the video
   // var title = document.querySelector('input[name="title"]').value;
 
-  var formData = new FormData();
-  formData.append('title', `user ID ${user_id}, video`)
-  formData.append('is_video', true)
-  formData.append('file', video_url)
-  formData.append("api_key", api_key);
-  formData.append("app_secret", app_secret);
+  // var formData = new FormData();
+  // formData.append('title', `user ID ${user_id}, video`)
+  // formData.append('is_video', true)
+  // formData.append('file', video_url)
+  // formData.append('cloud_name', 'thepav')
+  // formData.append('upload_preset', 'b0evuvff')
+
+  // // not allowed to send api key and secret via data when uploading from client-side
+  // // formData.append("api_key", api_key);
+  // // formData.append("app_secret", app_secret);
 
 
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', "https://api.cloudinary.com/v1_1/thepav/video/upload", false);
-  xhr.send(formData);
-  const videoResponse = JSON.parse(xhr.responseText);
+  // const xhr = new XMLHttpRequest();
+  // xhr.open('POST', "https://api.cloudinary.com/v1_1/thepav/upload", true);
+  // xhr.send(formData).then(console.log(xhr.responseText))
+
+
 });
+
+
+
+
 
 //api.cloudinary.com/v1_1/<cloud_name>/<resource_type>/upload
 // sbmtBtn.onclick = function onBtnSubmitClicked (){
