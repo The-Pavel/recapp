@@ -11,6 +11,7 @@ gem 'redis'
 gem "actionview", ">= 5.1.6"
 gem 'popper_js', '~> 1.14.5'
 
+
 gem 'autoprefixer-rails'
 gem "bootstrap-sass", ">= 3.4.1"
 gem 'font-awesome-sass', '~> 5.0.9'
