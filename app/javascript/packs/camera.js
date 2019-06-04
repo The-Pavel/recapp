@@ -226,15 +226,51 @@
 // TRYING STUFF FOR CAMERATAG
 CameraTag.observe('myCamera', 'published', function(){
 
-  console.log('camera ready to Publish');
+
 
   var myCamera = CameraTag.cameras["myCamera"];
   var myVideo = myCamera.getVideo();
-  console.log(myVideo)
-})
+  var video_url = myVideo.medias["720p"].slice(2,100000)
+  console.log(video_url);
+
+  // ### TO DO: add input to add a name to the video
+  // var title = document.querySelector('input[name="title"]').value;
+
+  var formData = new FormData();
+  formData.append('title', `user ID ${user_id}, video`)
+  formData.append('is_video', true)
+  formData.append('file', video_url)
+  formData.append("api_key", api_key);
+  formData.append("app_secret", app_secret);
 
 
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', "https://api.cloudinary.com/v1_1/thepav/video/upload", false);
+  xhr.send(formData);
+  const videoResponse = JSON.parse(xhr.responseText);
+});
 
+//api.cloudinary.com/v1_1/<cloud_name>/<resource_type>/upload
+// sbmtBtn.onclick = function onBtnSubmitClicked (){
+//           var title = document.querySelector('input[name="title"]').value;
+//           var formData = new FormData();
+//           // formData.append('cv',);
+//           formData.append('title', title);
+//           formData.append('is_video', true);
+//           formData.append('file', blob);
+
+//           var request = new XMLHttpRequest();
+//           request.open("post", "http://localhost:3000/cvs");
+//           request.send(formData);
+//           sbmtBtn.disabled = true;
+//           request.onreadystatechange = function () {
+//             if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+//               console.log(this.status);
+//           alert("Successfully uploaded");}}
+//           }
+
+
+//
 
 
 
