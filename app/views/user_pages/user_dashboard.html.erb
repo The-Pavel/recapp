@@ -1,23 +1,28 @@
+<!-- CAMERATAG SAMPLE SCRIPT -->
+
+<%= render 'shared/navbar' %>
 <%= link_to "Add information", edit_user_registration_path(current_user)  %>
 <ul style="list-style-type: none;">
-<li>First name: <%= @user.first_name %></li>
-<li>Last name: <%= @user.last_name %></li>
-<li>Contact information: <%= @user.contact_info %></li>
-<% @user.cvs.each do |cv| %>
+  <li>First name: <%= @user.first_name %></li>
+  <li>Last name: <%= @user.last_name %></li>
+  <li>Contact information: <%= @user.contact_info %></li>
+  <% @user.cvs.each do |cv| %>
   <% if cv.is_video == true %>
-    <%=cl_video_tag cv.file.file.public_id, autoplay: true, height: 600, width: 450, controls: true, muted: true %>
+  <%=cl_video_tag cv.file.file.public_id, autoplay: true, height: 600, width: 450, controls: true, muted: true %>
   <% else %>
-    <%= cv.title %> <br>
-    <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
+  <%= cv.title %> <br>
+  <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
   <% end  %>
   <%= link_to "Update", edit_cv_path(cv) %>
   <%= link_to "Delete", cv_path(cv), method: :delete %>
 <% end %>
 <p>just text to delete later</p>
 
-<%= link_to "Add CV", new_cv_path %>
+
+  <%= link_to "Add CV", new_cv_path %>
 </ul>
 
+<!-- Martin T. Camera -->
   <!-- <video id="gum" playsinline autoplay></video>
   <video id="recorded" playsinline loop></video>
   <button id="rec" >Record</button>
@@ -25,17 +30,18 @@
   <button id="submit" disabled>Save recording</button>
   Title <input type="text" name ="title">
   <p id="data"></p> -->
-<camera data-app-id='a-a3a4b2f0-5a79-0137-da23-02f6e3696dde' id='myCamera' data-stack='mobile'></camera>
+
+  <!-- CameraTag Camera -->
+  <camera id='myCamera' data-app-id='63f9c870-72c4-0130-04c5-123139045d73' data-pre-roll-length='1' data-minlength='1'></camera>
 
 
 
-
-<%= javascript_tag do %>
-   user_id = '<%= @user.id %>';
-   api_key = '<% ENV['api_key'] %>';
-   app_secret = '<% ENV['app_secret'] %>';
-   dashboard_url = '<%= "//localhost:3000/user/dashboard/#{@user.id}" %>';
-<% end %>
+  <%= javascript_tag do %>
+  user_id = '<%= @user.id %>';
+  api_key = '<% ENV['api_key'] %>';
+  app_secret = '<% ENV['app_secret'] %>';
+  dashboard_url = '<%= "//localhost:3000/user/dashboard/#{@user.id}" %>';
+  <% end %>
 
 
 
