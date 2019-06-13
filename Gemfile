@@ -8,7 +8,9 @@ gem 'pg', '~> 0.21'
 gem 'puma'
 gem 'rails', '5.1.6'
 gem 'redis'
-gem "actionview", ">= 5.1.6.2"
+gem "actionview", ">= 5.1.6"
+gem 'popper_js', '~> 1.14.5'
+
 
 gem 'autoprefixer-rails'
 gem "bootstrap-sass", ">= 3.4.1"

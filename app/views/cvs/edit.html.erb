@@ -1,0 +1,17 @@
+<%= simple_form_for(@cv) do |f| %>
+  <%= f.input :title, required: true, autofocus: true, label: 'Pick a cv title' %>
+  <%= f.label "I am uploading a video"%>
+  <%= f.check_box :is_video %>
+  <br><%= f.label "Do you want to upload a new file?"  %>
+  <%= f.file_field :file %>
+  <%= f.input :file_cache, as: :hidden %>
+  <%= f.button :submit, "Save changes" %>
+<% end %>
+
+  <% if @cv.is_video == true %>
+    <%=cl_video_tag @cv.file.file.public_id, autoplay: true, height: 600, width: 450, controls: true, muted: true %>
+  <% else %>
+    <%= @cv.title %> <br>
+    <%= link_to (cl_image_tag @cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
+  <% end  %>
+
