@@ -2,74 +2,35 @@
 
 <div class="dashboard-main-container d-flex flex-column">
 
-  <div class="list-group">
-    <% @user.cv_array.each do |cv| %>
-      <div class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">CV</h5>
-          <small>3 days ago</small>
+  <div class="row justify-content-end">
+    <div class="col-4">
+      <button class="btn btn-primary btn-upload"><%= link_to "Upload", new_cv_path %></button>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-primary btn-upload"><%= link_to "Record" %></button>
+    </div>
+  </div>
+
+  <div class="card-deck">
+    <% @user.cvs.each do |cv| %>
+      <div class="card">
+        <div class="card-img-top">
+          <% if cv.is_video == true %>
+            <%=cl_video_tag cv.file.file.public_id, autoplay: true, height: 200, width: 140, controls: true, muted: true %>
+          <% else %>
+            <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
+          <% end  %>
         </div>
-        <p class="mb-1"><a href="<%= cv %>" target="_blank">view</a></p>
-        <!-- <small>Donec id elit non mi porta.</small> -->
+        <div class="card-body">
+          <h5 class="card-title"><%= cv.title %> </h5>
+          <button class="btn btn-primary btn-upload"><%= link_to "Update", edit_cv_path(cv) %></button>
+          <button class="btn btn-primary btn-upload"><%= link_to "Delete", cv_path(cv), method: :delete %></button>
+        </div>
       </div>
     <% end %>
   </div>
 
-  <div class="card-deck">
-    <% @user.video_array.each do |video| %>
-      <div class="card" style="width: 320px;">
-        <%= cl_video_tag video, cloud_name: 'thepav', controls: true, :class => "video-container" %>
-        <!-- <img src="..." class="card-img-top" alt="..."> -->
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-          <button id="delete_video" class="btn btn-primary" value=<%= video %>>Delete</button>
-        </div>
-      </div>
-    <% end  %>
-  </div>
-
-  <%= link_to "Add information", edit_user_registration_path(current_user)  %>
-<ul style="list-style-type: none;">
-  <li>First name: <%= @user.first_name %></li>
-  <li>Last name: <%= @user.last_name %></li>
-  <li>Contact information: <%= @user.contact_info %></li>
-  <% @user.cvs.each do |cv| %>
-  <% if cv.is_video == true %>
-  <%=cl_video_tag cv.file.file.public_id, autoplay: true, height: 600, width: 450, controls: true, muted: true %>
-  <% else %>
-  <%= cv.title %> <br>
-  <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
-  <% end  %>
-  <%= link_to "Update", edit_cv_path(cv) %>
-  <%= link_to "Delete", cv_path(cv), method: :delete %>
-<% end %>
-<p>just text to delete later</p>
-
-
-  <%= link_to "Add CV", new_cv_path %>
-</ul>
-
 </div>
-
-<!-- CAMERATAG SAMPLE SCRIPT -->
-
-
-
-<!-- Martin T. Camera -->
-  <!-- <video id="gum" playsinline autoplay></video>
-  <video id="recorded" playsinline loop></video>
-  <button id="rec" >Record</button>
-  <button id="stop" disabled>Stop</button>
-  <button id="submit" disabled>Save recording</button>
-<<<<<<< HEAD
-  <p>Upload your video <input type="file" name="videoupload" multiple></p>
-  <button id="save">Save</button>
-  <p>Upload your CV <input type="file" name="cvupload" multiple></p>
-  <button id="savecv">Save</button>
-=======
-  Title <input type="text" name ="title">
-  <p id="data"></p> -->
 
   <!-- CameraTag Camera -->
   <camera id='myCamera' data-app-id='63f9c870-72c4-0130-04c5-123139045d73' data-pre-roll-length='1' data-minlength='1'></camera>
