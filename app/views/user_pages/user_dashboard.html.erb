@@ -1,39 +1,45 @@
 <%= render 'shared/navbar-dashboard' %>
 
 <div class="dashboard-main-container d-flex flex-column">
+  <div class="container">
 
-  <div class="row justify-content-end">
-    <div class="col-4">
-      <button class="btn btn-primary btn-upload"><%= link_to "Upload", new_cv_path %></button>
-    </div>
-    <div class="col-4">
-      <button class="btn btn-primary btn-upload"><%= link_to "Record" %></button>
-    </div>
-  </div>
-
-  <div class="card-deck">
-    <% @user.cvs.each do |cv| %>
-      <div class="card">
-        <div class="card-img-top">
-          <% if cv.is_video == true %>
-            <%=cl_video_tag cv.file.file.public_id, autoplay: true, height: 200, width: 140, controls: true, muted: true %>
-          <% else %>
-            <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
-          <% end  %>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"><%= cv.title %> </h5>
-          <button class="btn btn-primary btn-upload"><%= link_to "Update", edit_cv_path(cv) %></button>
-          <button class="btn btn-primary btn-upload"><%= link_to "Delete", cv_path(cv), method: :delete %></button>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="d-flex justify-content-around mt-5 mb-5">
+          <button class="btn-upload cta-primary"><%= link_to "Upload", new_cv_path %></button>
+          <button class="btn-upload cta-primary" id='btn-record'><%= link_to "Record" %></button>
         </div>
       </div>
-    <% end %>
+    </div>
+
+    <div class="d-flex justify-content-center mb-5">
+<!--       <div id='myCamera-start-screen'>
+        <a class='cameratag_record'>Record From Camera</a>
+        <a class='cameratag_record'>Record From Camera</a>
+      </div> -->
+      <camera id='myCamera' data-app-id='63f9c870-72c4-0130-04c5-123139045d73' data-pre-roll-length='1' data-minlength='1'></camera>
+    </div>
+
+    <div class="card-deck">
+      <% @user.cvs.each do |cv| %>
+        <div class="card">
+          <div class="card-img-top">
+            <% if cv.is_video == true %>
+              <%=cl_video_tag cv.file.file.public_id, autoplay: true, height: 200, width: 140, controls: true, muted: true %>
+            <% else %>
+              <%= link_to (cl_image_tag cv.file.file.public_id, {size: '140x200', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
+            <% end  %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= cv.title %> </h5>
+            <button class="btn btn-primary btn-upload"><%= link_to "Update", edit_cv_path(cv) %></button>
+            <button class="btn btn-primary btn-upload"><%= link_to "Delete", cv_path(cv), method: :delete %></button>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-
 </div>
-
-  <!-- CameraTag Camera -->
-  <camera id='myCamera' data-app-id='63f9c870-72c4-0130-04c5-123139045d73' data-pre-roll-length='1' data-minlength='1'></camera>
 
   <%= javascript_tag do %>
   user_id = '<%= @user.id %>';
