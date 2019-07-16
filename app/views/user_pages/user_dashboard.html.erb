@@ -1,56 +1,55 @@
 <%= render 'shared/navbar-dashboard' %>
 
 <div class="dashboard-main-container d-flex flex-column">
+
   <div class="container">
-
-    <section class="header-cta mb-5">
-      <div class="row">
-        <div class="col p-0">
-          <h1>Dashboard</h1>
-        </div>
-        <div class="col-md-auto p-0 pr-5">
+    <div class="wrapper-inner">
+      <section class="mb-5">
+        <h1 class='mb-5'>Dashboard</h1>
+        <div class="header-cta d-flex">
           <button class="dashboard-cta cta-primary" id='btn-upload'><%= image_tag('upload.png') %><%= link_to "Upload", new_cv_path %></button>
+          <button class="dashboard-cta cta-primary mr-5" id='btn-record'><%= image_tag('record-white.png') %><%= link_to "Record" %></button>
         </div>
-        <div class="col col-lg-2 p-0">
-          <button class="dashboard-cta cta-primary" id='btn-record'><%= image_tag('record-white.png') %><%= link_to "Record" %></button>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="d-flex justify-content-center mb-5">
-      <camera id='myCamera' data-app-id='63f9c870-72c4-0130-04c5-123139045d73' data-pre-roll-length='1' data-minlength='1' style="display: none"></camera>
-    </section>
+      <section class="d-flex justify-content-center mb-5">
+        <camera id='myCamera' data-app-id='63f9c870-72c4-0130-04c5-123139045d73' data-pre-roll-length='1' data-minlength='1' style="display: none"></camera>
+      </section>
 
-    <section class="cv-container">
-      <h2>My CVs</h2>
-      <div class="row">
-        <% @user.cvs.each do |cv| %>
-          <div class="card col-3 mr-5 mb-5">
-            <div class="card-img-top">
-              <% if cv.is_video == true %>
-                <%=  cl_video_tag cv.file.file.public_id, autoplay: true, :class => 'cl-card-video', controls: true, muted: true %>
-              <% else %>
-                <%= link_to (cl_image_tag cv.file.file.public_id, {:class => 'cl-card-img', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
-              <% end  %>
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col p-0">
-                  <h5 class="card-title"><%= cv.title %></h5>
-                </div>
-                <div class="col-md-auto p-0 pr-3">
-                  <%= link_to image_tag('edit.png'), edit_cv_path(cv), :class => 'card-btn' %>
-                </div>
-                <div class="col-md-auto p-0 pr-3">
-                  <%= link_to image_tag('delete.png'), cv_path(cv), method: :delete, :class => 'card-btn' %>
+      <section class="cv-container">
+        <h2>My CVs</h2>
+        <div class="d-flex flex-wrap justify-content-between">
+          <div class="row">
+            <% @user.cvs.each do |cv| %>
+              <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card">
+                  <div class="card-img-top">
+                    <% if cv.is_video == true %>
+                      <%=  cl_video_tag cv.file.file.public_id, autoplay: true, :class => 'cl-card-video', controls: true, muted: true %>
+                    <% else %>
+                      <%= link_to (cl_image_tag cv.file.file.public_id, {:class => 'cl-card-img', crop: :thumb, format: :jpg}), "https://res.cloudinary.com/thepav/#{cv.file.file.identifier}", target: 'blank' %>
+                    <% end  %>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col p-0">
+                        <h5 class="card-title"><%= cv.title %></h5>
+                      </div>
+                      <div class="col-md-auto p-0 pr-3">
+                        <%= link_to image_tag('edit.png'), edit_cv_path(cv), :class => 'card-btn' %>
+                      </div>
+                      <div class="col-md-auto p-0 pr-3">
+                        <%= link_to image_tag('delete.png'), cv_path(cv), method: :delete, :class => 'card-btn' %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-    </section>
-
+        </div>
+      </section>
+    </div>
   </div>
 </div>
 
