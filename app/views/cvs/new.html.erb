@@ -1,13 +1,22 @@
-
+<h2>Upload Video_Cv</h2>
 <%= simple_form_for(@cv) do |f| %>
-  <%= f.input :title, required: true, autofocus: true, label: 'Pick a cv title' %>
-  <%= f.label "I am uploading a video"  %>
-  <%= f.check_box :is_video %>
+  <%= f.input :title, required: true, autofocus: true, label: 'Pick a video_cv title' %>
   <%= f.file_field :file %>
+  <%= f.hidden_field :is_video, :value => true %>
   <%= f.input :file_cache, as: :hidden %>
   <%= f.button :submit, "Submit" %>
 <% end %>
 
+<br>
+<br>
+
+<h2>Upload Cv</h2>
+<%= simple_form_for(@cv) do |f| %>
+  <%= f.input :title, required: true, autofocus: true, label: 'Pick a cv title' %>
+  <%= f.file_field :file, accept: '.pdf' %>
+  <%= f.input :file_cache, as: :hidden %>
+  <%= f.button :submit, "Submit" %>
+<% end %>
 
 
 
