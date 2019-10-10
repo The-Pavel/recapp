@@ -10,7 +10,8 @@ gem 'rails', '5.1.6'
 gem 'redis'
 gem "actionview", ">= 5.1.6"
 gem 'popper_js', '~> 1.14.5'
-
+gem 'nokogiri'
+gem 'sovren'
 
 gem 'autoprefixer-rails'
 gem "bootstrap-sass", ">= 3.4.1"
