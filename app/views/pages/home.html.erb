@@ -1,13 +1,16 @@
 <div class="video-banner d-flex flex-column justify-content-center align-items-center position-relative">
   <%= render 'shared/navbar' %>
   <div class="position-absolute d-flex flex-column align-items-center justify-content-center">
-    <h1>JOBSEEKERS</h1>
+    <h1 style="background-color: rgba(0,0,0,0.5); padding: 10px 20px;">JOBSEEKERS</h1>
     <%= link_to t(".sign_up", default: "Get Started"), new_user_registration_path, class: "cta-primary" %>
   </div>
-  <video autoplay loop id="video-background" muted plays-inline>
-    <source src="https://player.vimeo.com/external/158148793.hd.mp4?s=8e8741dbee251d5c35a759718d4b0976fbf38b6f&profile_id=119&oauth2_token_id=57447761" type="video/mp4">
+  <video muted autoplay loop id="video-background" plays-inline>
+    <source src="https://gcs-vimeo.akamaized.net/exp=1570699967~acl=%2A%2F1506618762.mp4%2A~hmac=dc17f758af3ee977313d149dd58c624a68cde374e68c4e8e635f503f1c3bef4b/vimeo-prod-skyfire-std-us/01/2733/14/363666651/1506618762.mp4" type="video/mp4">
   </video>
 </div>
+
+<!-- <iframe src="https://player.vimeo.com/video/363666651" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/363666651">From Nothing to Something</a> from <a href="https://vimeo.com/vucko">Vucko</a> on <a href="https://vimeo.com">Vimeo</a>.</p> -->
 
 <div class="banner-section">
   <h1>Make Hiring More Productive</h1>
