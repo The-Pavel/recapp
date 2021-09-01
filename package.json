@@ -9,7 +9,7 @@
     "jquery": ">=3.4.0",
     "jquery-ujs": "^1.2.2",
     "popper.js": "^1.15.0",
-    "tar": ">=4.4.2",
+    "tar": ">=4.4.18",
     "webpacker": "^4.4.0"
   },
   "devDependencies": {
